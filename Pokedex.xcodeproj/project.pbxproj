@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2266C8EE29DD19D400CE5154 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8ED29DD19D400CE5154 /* LoginViewController.swift */; };
+		2266C8F129DD1CCF00CE5154 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2266C8F029DD1CCF00CE5154 /* Alamofire */; };
+		2266C8F329DD1D3D00CE5154 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F229DD1D3D00CE5154 /* User.swift */; };
+		2266C8F729DD21DA00CE5154 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */; };
+		2266C8F929DD261900CE5154 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F829DD261900CE5154 /* FavoriteViewController.swift */; };
+		2266C8FD29DD295900CE5154 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8FC29DD295900CE5154 /* Pokemon.swift */; };
+		2266C8FF29DD2BC200CE5154 /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */; };
 		6635A76929DCAEED007E22D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76829DCAEED007E22D1 /* AppDelegate.swift */; };
 		6635A76B29DCAEED007E22D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */; };
 		6635A76D29DCAEED007E22D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76C29DCAEED007E22D1 /* ViewController.swift */; };
@@ -17,6 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2266C8ED29DD19D400CE5154 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2266C8F229DD1D3D00CE5154 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2266C8F829DD261900CE5154 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		2266C8FC29DD295900CE5154 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
 		6635A76529DCAEED007E22D1 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6635A76829DCAEED007E22D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,12 +46,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				66C040FE29DCBCF60055AE56 /* ParseSwift in Frameworks */,
+				2266C8F129DD1CCF00CE5154 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2266C8FA29DD288F00CE5154 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2266C8F229DD1D3D00CE5154 /* User.swift */,
+				2266C8FC29DD295900CE5154 /* Pokemon.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2266C8FB29DD28A100CE5154 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2266C8ED29DD19D400CE5154 /* LoginViewController.swift */,
+				2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		6635A75C29DCAEED007E22D1 = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +90,13 @@
 		6635A76729DCAEED007E22D1 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				2266C8FA29DD288F00CE5154 /* Models */,
+				2266C8FB29DD28A100CE5154 /* Login */,
 				6635A76829DCAEED007E22D1 /* AppDelegate.swift */,
 				6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */,
 				6635A76C29DCAEED007E22D1 /* ViewController.swift */,
+				2266C8F829DD261900CE5154 /* FavoriteViewController.swift */,
+				2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */,
 				6635A76E29DCAEED007E22D1 /* Main.storyboard */,
 				6635A77129DCAEEE007E22D1 /* Assets.xcassets */,
 				6635A77329DCAEEE007E22D1 /* LaunchScreen.storyboard */,
@@ -87,6 +123,7 @@
 			name = Pokedex;
 			packageProductDependencies = (
 				66C040FD29DCBCF60055AE56 /* ParseSwift */,
+				2266C8F029DD1CCF00CE5154 /* Alamofire */,
 			);
 			productName = Pokedex;
 			productReference = 6635A76529DCAEED007E22D1 /* Pokedex.app */;
@@ -118,6 +155,7 @@
 			mainGroup = 6635A75C29DCAEED007E22D1;
 			packageReferences = (
 				66C040FC29DCBCF60055AE56 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+				2266C8EF29DD1CCF00CE5154 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 6635A76629DCAEED007E22D1 /* Products */;
 			projectDirPath = "";
@@ -146,8 +184,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2266C8EE29DD19D400CE5154 /* LoginViewController.swift in Sources */,
+				2266C8FD29DD295900CE5154 /* Pokemon.swift in Sources */,
+				2266C8F729DD21DA00CE5154 /* SignUpViewController.swift in Sources */,
+				2266C8FF29DD2BC200CE5154 /* RandomViewController.swift in Sources */,
 				6635A76D29DCAEED007E22D1 /* ViewController.swift in Sources */,
+				2266C8F929DD261900CE5154 /* FavoriteViewController.swift in Sources */,
 				6635A76929DCAEED007E22D1 /* AppDelegate.swift in Sources */,
+				2266C8F329DD1D3D00CE5154 /* User.swift in Sources */,
 				6635A76B29DCAEED007E22D1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +410,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2266C8EF29DD1CCF00CE5154 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		66C040FC29DCBCF60055AE56 /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/parse-community/Parse-Swift";
@@ -377,6 +429,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2266C8F029DD1CCF00CE5154 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2266C8EF29DD1CCF00CE5154 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		66C040FD29DCBCF60055AE56 /* ParseSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 66C040FC29DCBCF60055AE56 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
