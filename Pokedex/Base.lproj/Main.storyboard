@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KU4-GM-xuX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900.0000000000002" y="-2.6785714285714284"/>
+            <point key="canvasLocation" x="1900" y="-8"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="gH0-c2-Rzy">
@@ -124,9 +124,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="Zwf-1h-1TG">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="DUQ-5b-kbb">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6ED-zD-orS">
-                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                        <barButtonItem key="leftBarButtonItem" id="DUQ-5b-kbb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6ED-zD-orS">
+                                <rect key="frame" x="20" y="4.5" width="92" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout"/>
@@ -139,9 +139,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9OT-mt-vte" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2810.144927536232" y="683.70535714285711"/>
+            <point key="canvasLocation" x="3720.289855072464" y="683.70535714285711"/>
         </scene>
-        <!--I Choose You-->
+        <!--Random-->
         <scene sceneID="BuO-g4-1bK">
             <objects>
                 <viewController id="AsO-2p-rEi" customClass="RandomViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
@@ -151,11 +151,23 @@
                         <viewLayoutGuide key="safeArea" id="PZp-O2-5jV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="I Choose You" id="8Gf-Gm-66U"/>
+                    <navigationItem key="navigationItem" title="Random" id="8Gf-Gm-66U">
+                        <barButtonItem key="leftBarButtonItem" id="joY-7B-di4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="o8k-PO-Tfd">
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogOutTapped:" destination="AsO-2p-rEi" eventType="touchUpInside" id="31e-b2-Hr8"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dC-hE-ujr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4506" y="684"/>
+            <point key="canvasLocation" x="4626" y="1467"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rkf-N8-ReC">
@@ -173,7 +185,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5h-Rg-5fh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="989.85507246376824" y="-2.6785714285714284"/>
+            <point key="canvasLocation" x="1054" y="-8"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="zyR-Up-Tct">
@@ -194,12 +206,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdC-IH-QWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900.0000000000002" y="683.70535714285711"/>
+            <point key="canvasLocation" x="2810.144927536232" y="683.70535714285711"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="SVj-aV-qSd">
             <objects>
-                <viewController id="8Ol-8S-N1n" customClass="SignUpViewController" customModule="BeReal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Ol-8S-N1n" customClass="SignUpViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zBI-hG-qO7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -276,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulR-fu-zku" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2667" y="-3"/>
+            <point key="canvasLocation" x="2810" y="-8"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Z5r-6m-SmO">
@@ -284,17 +296,77 @@
                 <tabBarController storyboardIdentifier="TabNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="u5c-Vj-fcc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cWL-jE-orv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="goA-TG-BPt" kind="relationship" relationship="viewControllers" id="IBV-hJ-jPG"/>
                         <segue destination="fvL-W1-Bkf" kind="relationship" relationship="viewControllers" id="YUp-58-Vlr"/>
+                        <segue destination="9d8-oT-W4O" kind="relationship" relationship="viewControllers" id="eNL-XA-Yxk"/>
+                        <segue destination="LNJ-N4-dAo" kind="relationship" relationship="viewControllers" id="rH5-6G-auS"/>
+                        <segue destination="ODX-6T-FOM" kind="relationship" relationship="viewControllers" id="2dw-fr-2Vu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IyE-vs-7Ch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="989.85507246376824" y="683.70535714285711"/>
+            <point key="canvasLocation" x="1900.0000000000002" y="683.70535714285711"/>
+        </scene>
+        <!--I Choose You-->
+        <scene sceneID="Ych-wF-0cj">
+            <objects>
+                <viewController id="ByA-El-q22" customClass="ChooseViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VKm-iE-baR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="YL6-10-vFZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="I Choose You" id="N8B-JK-UOs">
+                        <barButtonItem key="leftBarButtonItem" id="x1R-zU-GGk">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sKB-ts-1A0">
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogOutTapped:" destination="ByA-El-q22" eventType="touchUpInside" id="rs5-cm-xe8"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hAw-z9-DHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="990" y="684"/>
+        </scene>
+        <!--Sound Enthusiast-->
+        <scene sceneID="4XT-VL-Y3g">
+            <objects>
+                <viewController id="QNH-Db-IbI" customClass="SoundViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qxD-0v-JOY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="38g-r8-fmY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sound Enthusiast" id="iYt-ro-t3F">
+                        <barButtonItem key="leftBarButtonItem" id="l2Q-e9-OAV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vHV-JI-KJ3">
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogOutTapped:" destination="QNH-Db-IbI" eventType="touchUpInside" id="Omv-rl-zcN"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OQa-ss-8ud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2752" y="1467"/>
         </scene>
         <!--Random-->
         <scene sceneID="R9f-iK-41G">
@@ -316,10 +388,98 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBK-pb-XYj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3696" y="684"/>
+            <point key="canvasLocation" x="3720" y="1467"/>
+        </scene>
+        <!--Choose-->
+        <scene sceneID="bcc-pQ-66Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9d8-oT-W4O" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Choose" image="cursorarrow" catalog="system" id="liQ-9r-La9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tx6-eL-wO5">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ByA-El-q22" kind="relationship" relationship="rootViewController" id="kar-Ic-yTm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5zJ-CI-sqd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="684"/>
+        </scene>
+        <!--Spelling Bee-->
+        <scene sceneID="pCs-qO-xGO">
+            <objects>
+                <viewController id="x0t-ii-f4L" customClass="SpellingViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="twL-BU-bS1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hzt-i5-q3P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Spelling Bee" id="pc4-z7-zDb">
+                        <barButtonItem key="leftBarButtonItem" id="SqZ-kh-cOU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="V64-fd-Oqz">
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogOutTapped:" destination="x0t-ii-f4L" eventType="touchUpInside" id="Zx7-tg-n2V"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WRg-fI-sdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="990" y="1440"/>
+        </scene>
+        <!--Sound-->
+        <scene sceneID="b3A-g3-uLg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LNJ-N4-dAo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sound" image="music.note" catalog="system" id="0d4-vH-0qp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aas-Fh-gHX">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QNH-Db-IbI" kind="relationship" relationship="rootViewController" id="dux-ai-IS2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGS-bu-MpA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="1467"/>
+        </scene>
+        <!--Spelling-->
+        <scene sceneID="WEW-Rl-vPL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ODX-6T-FOM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Spelling" image="abc" catalog="system" id="Hw5-7S-S9R"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Abd-QM-L4t">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x0t-ii-f4L" kind="relationship" relationship="rootViewController" id="fSr-kf-VEY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ph1-i1-ig0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="1440"/>
         </scene>
     </scenes>
     <resources>
+        <image name="abc" catalog="system" width="128" height="50"/>
+        <image name="cursorarrow" catalog="system" width="92" height="128"/>
+        <image name="music.note" catalog="system" width="96" height="128"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">

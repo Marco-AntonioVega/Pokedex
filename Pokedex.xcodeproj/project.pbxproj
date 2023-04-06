@@ -12,8 +12,13 @@
 		2266C8F329DD1D3D00CE5154 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F229DD1D3D00CE5154 /* User.swift */; };
 		2266C8F729DD21DA00CE5154 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */; };
 		2266C8F929DD261900CE5154 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8F829DD261900CE5154 /* FavoriteViewController.swift */; };
-		2266C8FD29DD295900CE5154 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8FC29DD295900CE5154 /* Pokemon.swift */; };
+		2266C8FD29DD295900CE5154 /* PokemonFavoriteEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8FC29DD295900CE5154 /* PokemonFavoriteEntry.swift */; };
 		2266C8FF29DD2BC200CE5154 /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */; };
+		22A160AC29DE618D00111CEB /* ChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A160AB29DE618D00111CEB /* ChooseViewController.swift */; };
+		22A160AE29DE63D900111CEB /* SoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A160AD29DE63D900111CEB /* SoundViewController.swift */; };
+		22A160B029DE647200111CEB /* SpellingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A160AF29DE647200111CEB /* SpellingViewController.swift */; };
+		22A160B229DE6A6900111CEB /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A160B129DE6A6900111CEB /* PokemonDetails.swift */; };
+		22A160B429DE6BC400111CEB /* APIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A160B329DE6BC400111CEB /* APIFunctions.swift */; };
 		6635A76929DCAEED007E22D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76829DCAEED007E22D1 /* AppDelegate.swift */; };
 		6635A76B29DCAEED007E22D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */; };
 		6635A76D29DCAEED007E22D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635A76C29DCAEED007E22D1 /* ViewController.swift */; };
@@ -28,8 +33,13 @@
 		2266C8F229DD1D3D00CE5154 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2266C8F829DD261900CE5154 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
-		2266C8FC29DD295900CE5154 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		2266C8FC29DD295900CE5154 /* PokemonFavoriteEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavoriteEntry.swift; sourceTree = "<group>"; };
 		2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
+		22A160AB29DE618D00111CEB /* ChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseViewController.swift; sourceTree = "<group>"; };
+		22A160AD29DE63D900111CEB /* SoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundViewController.swift; sourceTree = "<group>"; };
+		22A160AF29DE647200111CEB /* SpellingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellingViewController.swift; sourceTree = "<group>"; };
+		22A160B129DE6A6900111CEB /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
+		22A160B329DE6BC400111CEB /* APIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFunctions.swift; sourceTree = "<group>"; };
 		6635A76529DCAEED007E22D1 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6635A76829DCAEED007E22D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				2266C8F229DD1D3D00CE5154 /* User.swift */,
-				2266C8FC29DD295900CE5154 /* Pokemon.swift */,
+				2266C8FC29DD295900CE5154 /* PokemonFavoriteEntry.swift */,
+				22A160B129DE6A6900111CEB /* PokemonDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -69,6 +80,19 @@
 				2266C8F629DD21DA00CE5154 /* SignUpViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		22A160B529DE841100111CEB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6635A76C29DCAEED007E22D1 /* ViewController.swift */,
+				2266C8F829DD261900CE5154 /* FavoriteViewController.swift */,
+				2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */,
+				22A160AB29DE618D00111CEB /* ChooseViewController.swift */,
+				22A160AD29DE63D900111CEB /* SoundViewController.swift */,
+				22A160AF29DE647200111CEB /* SpellingViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		6635A75C29DCAEED007E22D1 = {
@@ -90,13 +114,12 @@
 		6635A76729DCAEED007E22D1 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				22A160B529DE841100111CEB /* ViewControllers */,
+				22A160B329DE6BC400111CEB /* APIFunctions.swift */,
 				2266C8FA29DD288F00CE5154 /* Models */,
 				2266C8FB29DD28A100CE5154 /* Login */,
 				6635A76829DCAEED007E22D1 /* AppDelegate.swift */,
 				6635A76A29DCAEED007E22D1 /* SceneDelegate.swift */,
-				6635A76C29DCAEED007E22D1 /* ViewController.swift */,
-				2266C8F829DD261900CE5154 /* FavoriteViewController.swift */,
-				2266C8FE29DD2BC200CE5154 /* RandomViewController.swift */,
 				6635A76E29DCAEED007E22D1 /* Main.storyboard */,
 				6635A77129DCAEEE007E22D1 /* Assets.xcassets */,
 				6635A77329DCAEEE007E22D1 /* LaunchScreen.storyboard */,
@@ -185,14 +208,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2266C8EE29DD19D400CE5154 /* LoginViewController.swift in Sources */,
-				2266C8FD29DD295900CE5154 /* Pokemon.swift in Sources */,
+				2266C8FD29DD295900CE5154 /* PokemonFavoriteEntry.swift in Sources */,
+				22A160B429DE6BC400111CEB /* APIFunctions.swift in Sources */,
 				2266C8F729DD21DA00CE5154 /* SignUpViewController.swift in Sources */,
+				22A160AE29DE63D900111CEB /* SoundViewController.swift in Sources */,
+				22A160AC29DE618D00111CEB /* ChooseViewController.swift in Sources */,
 				2266C8FF29DD2BC200CE5154 /* RandomViewController.swift in Sources */,
 				6635A76D29DCAEED007E22D1 /* ViewController.swift in Sources */,
 				2266C8F929DD261900CE5154 /* FavoriteViewController.swift in Sources */,
+				22A160B029DE647200111CEB /* SpellingViewController.swift in Sources */,
 				6635A76929DCAEED007E22D1 /* AppDelegate.swift in Sources */,
 				2266C8F329DD1D3D00CE5154 /* User.swift in Sources */,
 				6635A76B29DCAEED007E22D1 /* SceneDelegate.swift in Sources */,
+				22A160B229DE6A6900111CEB /* PokemonDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 import Foundation
 import ParseSwift
 
-struct Post: ParseObject {
+struct PokemonFavoriteEntry: ParseObject {
     // These are required by ParseObject
     var objectId: String?
     var createdAt: Date?
