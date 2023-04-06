@@ -66,16 +66,16 @@ Users can use interactive Pokémon quizzes and activities to learn more about th
 
 **Flow Navigation** (Screen to Screen)
 
-* Login/Sign Up Screen  
+* Login/Sign Up Screen<br />
    => Favorite Pokémon list Screen
-* Favorite List Screen  
-   => Login screen by logout  
+* Favorite List Screen<br />
+   => Login screen by logout<br />
    => Pokémon specific details page
-* Random Pokemon Screen   
+* Random Pokemon Screen<br />
    => Login screen by logout
-* Pokemon by Pokedex number screen   
+* Pokemon by Pokedex number screen<br /> 
    => Login screen by logout
-* Pokemon by cry screen   
+* Pokemon by cry screen<br />
    => Login screen by logout
-* Pokemon by name screen   
+* Pokemon by name screen<br />
    => Login screen by logout
