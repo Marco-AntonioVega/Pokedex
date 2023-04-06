@@ -153,7 +153,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Random" id="8Gf-Gm-66U">
                         <barButtonItem key="leftBarButtonItem" id="joY-7B-di4">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="o8k-PO-Tfd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="o8k-PO-Tfd">
                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -324,7 +324,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="I Choose You" id="N8B-JK-UOs">
                         <barButtonItem key="leftBarButtonItem" id="x1R-zU-GGk">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sKB-ts-1A0">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sKB-ts-1A0">
                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -347,12 +347,82 @@
                     <view key="view" contentMode="scaleToFill" id="qxD-0v-JOY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-if-URX">
+                                <rect key="frame" x="-3.5" y="186" width="421" height="524"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B9n-5t-MfU">
+                                        <rect key="frame" x="29.5" y="0.0" width="362.5" height="88"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess the Pokémon By Its Cry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKW-Zg-Q05">
+                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="33.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doj-vp-J04">
+                                                <rect key="frame" x="137.5" y="53.5" width="87" height="34.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Play Cry"/>
+                                                <connections>
+                                                    <action selector="playCryButtonTapped:" destination="QNH-Db-IbI" eventType="touchUpInside" id="UFn-Xd-0WE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="60p-X0-U7I">
+                                        <rect key="frame" x="0.0" y="98" width="421" height="208"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ncC-LT-F5Y">
+                                                <rect key="frame" x="0.0" y="0.0" width="208" height="208"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ncC-LT-F5Y" secondAttribute="height" multiplier="1:1" id="fmr-3o-JOe"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NeR-Af-KOV">
+                                                <rect key="frame" x="213" y="0.0" width="208" height="208"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="NeR-Af-KOV" secondAttribute="height" multiplier="1:1" id="cKm-Ch-Ryy"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-1x-7gW">
+                                        <rect key="frame" x="0.0" y="316" width="421" height="208"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVx-0T-MBK">
+                                                <rect key="frame" x="0.0" y="0.0" width="208" height="208"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="SVx-0T-MBK" secondAttribute="height" multiplier="1:1" id="Sj3-4q-kWC"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GGk-jC-pWJ">
+                                                <rect key="frame" x="213" y="0.0" width="208" height="208"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="GGk-jC-pWJ" secondAttribute="height" multiplier="1:1" id="mjT-5m-D7J"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="60p-X0-U7I" firstAttribute="leading" secondItem="fkw-if-URX" secondAttribute="leading" id="009-Zf-1QX"/>
+                                    <constraint firstAttribute="trailing" secondItem="moQ-1x-7gW" secondAttribute="trailing" id="4Ju-48-S1t"/>
+                                    <constraint firstItem="moQ-1x-7gW" firstAttribute="leading" secondItem="fkw-if-URX" secondAttribute="leading" id="7Ix-I3-AEz"/>
+                                    <constraint firstAttribute="trailing" secondItem="60p-X0-U7I" secondAttribute="trailing" id="Lzu-nT-aeg"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="38g-r8-fmY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fkw-if-URX" firstAttribute="centerY" secondItem="qxD-0v-JOY" secondAttribute="centerY" id="EcS-FH-T30"/>
+                            <constraint firstItem="fkw-if-URX" firstAttribute="centerX" secondItem="qxD-0v-JOY" secondAttribute="centerX" id="Uyj-EH-dkl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sound Enthusiast" id="iYt-ro-t3F">
                         <barButtonItem key="leftBarButtonItem" id="l2Q-e9-OAV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vHV-JI-KJ3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vHV-JI-KJ3">
                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -366,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQa-ss-8ud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2752" y="1467"/>
+            <point key="canvasLocation" x="2750.7246376811595" y="1466.5178571428571"/>
         </scene>
         <!--Random-->
         <scene sceneID="R9f-iK-41G">
@@ -437,10 +507,10 @@
             </objects>
             <point key="canvasLocation" x="990" y="1440"/>
         </scene>
-        <!--Sound-->
+        <!--SoundNavigationController-->
         <scene sceneID="b3A-g3-uLg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LNJ-N4-dAo" sceneMemberID="viewController">
+                <navigationController title="SoundNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="LNJ-N4-dAo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sound" image="music.note" catalog="system" id="0d4-vH-0qp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aas-Fh-gHX">

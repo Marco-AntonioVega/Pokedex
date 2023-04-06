@@ -6,9 +6,24 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SoundViewController: UIViewController {
+    
+    private var player: AVPlayer?
 
+    @IBAction func playCryButtonTapped(_ sender: Any) {
+        let audioURL = URL(string: "https://pokemoncries.com/cries/63.mp3")
+        if let audioURL = audioURL {
+            playAudio(from: audioURL)
+        }
+    }
+    
+    func playAudio(from url: URL) {
+        player = AVPlayer(url: url)
+        player?.play()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
