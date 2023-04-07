@@ -22,7 +22,8 @@ class RandomViewController: UIViewController {
     @IBOutlet weak var abilities: UILabel!
     
     private var player: AVPlayer?
-    
+    var natDexNum: Int = 0
+  
     func playAudio (from url: URL){
         player = AVPlayer (url: url)
         player?.play()
@@ -30,8 +31,22 @@ class RandomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIFunctions.getNationalDexCap();
         
+        natDexNum = Int.random(in: 1..<(APIFunctions.getNationalDexCap() + 1))
+
+        APIFunctions.getAllDetails(id: natDexNum) {
+            pokemonAllDetails in DispatchQueue.main.async {
+                if let pokemonAllDetails = pokemonAllDetails {
+                    print(pokemonAllDetails.id!)
+                    print(pokemonAllDetails.name!)
+                    print(pokemonAllDetails.variants!)
+                    print(pokemonAllDetails.cry!)
+                    print(pokemonAllDetails.flavorText!)
+                    print(pokemonAllDetails.genus!)
+                }
+            }
+        }
+      
         let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png")
         pokemon_Name.text = String("Articuno #0144")
         
@@ -67,5 +82,4 @@ class RandomViewController: UIViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
-    
 }
