@@ -26,6 +26,7 @@
 		6635A77229DCAEEE007E22D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6635A77129DCAEEE007E22D1 /* Assets.xcassets */; };
 		6635A77529DCAEEE007E22D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6635A77329DCAEEE007E22D1 /* LaunchScreen.storyboard */; };
 		66C040FE29DCBCF60055AE56 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 66C040FD29DCBCF60055AE56 /* ParseSwift */; };
+		6EA079B829E09499002B6FB3 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 6EA079B729E09499002B6FB3 /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EA079B829E09499002B6FB3 /* Nuke in Frameworks */,
 				66C040FE29DCBCF60055AE56 /* ParseSwift in Frameworks */,
 				2266C8F129DD1CCF00CE5154 /* Alamofire in Frameworks */,
 			);
@@ -147,6 +149,7 @@
 			packageProductDependencies = (
 				66C040FD29DCBCF60055AE56 /* ParseSwift */,
 				2266C8F029DD1CCF00CE5154 /* Alamofire */,
+				6EA079B729E09499002B6FB3 /* Nuke */,
 			);
 			productName = Pokedex;
 			productReference = 6635A76529DCAEED007E22D1 /* Pokedex.app */;
@@ -179,6 +182,7 @@
 			packageReferences = (
 				66C040FC29DCBCF60055AE56 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
 				2266C8EF29DD1CCF00CE5154 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6EA079B629E09499002B6FB3 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 6635A76629DCAEED007E22D1 /* Products */;
 			projectDirPath = "";
@@ -454,6 +458,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		6EA079B629E09499002B6FB3 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -466,6 +478,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 66C040FC29DCBCF60055AE56 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
 			productName = ParseSwift;
+		};
+		6EA079B729E09499002B6FB3 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EA079B629E09499002B6FB3 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
