@@ -1,4 +1,3 @@
-//  Post.swift
 import Foundation
 import ParseSwift
 

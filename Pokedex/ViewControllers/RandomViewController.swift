@@ -8,11 +8,26 @@
 import UIKit
 
 class RandomViewController: UIViewController {
-
+    
+    var natDexNum: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIFunctions.getNationalDexCap();
-        // Do any additional setup after loading the view.
+        natDexNum = Int.random(in: 1..<(APIFunctions.getNationalDexCap() + 1))
+
+        APIFunctions.getAllDetails(id: natDexNum) {
+            pokemonAllDetails in DispatchQueue.main.async {
+                if let pokemonAllDetails = pokemonAllDetails {
+                    print(pokemonAllDetails.id!)
+                    print(pokemonAllDetails.name!)
+                    print(pokemonAllDetails.variants!)
+                    print(pokemonAllDetails.cry!)
+                    print(pokemonAllDetails.flavorText!)
+                    print(pokemonAllDetails.genus!)
+                }
+            }
+        }
+        
     }
     
     @IBAction func onLogOutTapped(_ sender: Any) {
@@ -29,15 +44,4 @@ class RandomViewController: UIViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
