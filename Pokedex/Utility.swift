@@ -9,6 +9,10 @@ import Foundation
 
 class Utility {
     
+    static func getMaxDexNum() -> Int {
+        return 905
+    }
+    
     //formats names
     static func capitalize(text: String) -> String {
         if(text.firstIndex(of: "-") == nil) {

@@ -25,7 +25,7 @@ class RandomViewController: UIViewController {
     private var player: AVPlayer?
     
     var natDexNum: Int = 0
-    let maxNatDexNum = 905
+    let maxNatDexNum: Int = Utility.getMaxDexNum()
     var cry: String = ""
     var variantArray: [Any] = []
     
@@ -33,7 +33,7 @@ class RandomViewController: UIViewController {
         super.viewDidLoad()
         
         natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-        
+
         //displays first variant of Pokemon
         triggerChangePokemon(index: 0)
     }
@@ -79,10 +79,25 @@ class RandomViewController: UIViewController {
                     flavorText.text = pokemonAllDetails.flavorText
                     cry = pokemonAllDetails.cry!
                     
-                    //fetches variant information if possible
                     if(pokemonAllDetails.variants!.count > 1) {
+                        
+                        //fetches variant information if possible
                         for entry in pokemonAllDetails.variants! {
                             tempVariantArray.append(entry as! PokemonVariantDetails)
+                            
+                            //fills in variant names in tabs
+                            if(self.variants.numberOfSegments < pokemonAllDetails.variants!.count || self.variants.titleForSegment(at: 1) == "Second") {
+                                if let variantName = entry as? PokemonVariantDetails {
+                                    print(variantName.name!)
+                                    if(self.variants.titleForSegment(at: 0) == "First") {
+                                        self.variants.setTitle(variantName.name, forSegmentAt: 0)
+                                    } else if(self.variants.titleForSegment(at: 1) == "Second") {
+                                        self.variants.setTitle(variantName.name, forSegmentAt: 1)
+                                    } else {
+                                        self.variants.insertSegment(withTitle: variantName.name, at: self.variants.numberOfSegments, animated: false)
+                                    }
+                                }
+                            }
                         }
                         self.variantArray = tempVariantArray
                         completion(variantArray)
