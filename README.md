@@ -34,6 +34,9 @@ Users can use interactive Pokémon quizzes and activities to learn more about th
 **Optional Nice-to-have Stories**
 
 * User able to see comptetive movesets for specific Pokémon
+* User able to see Pokémon moves
+* User able to see Pokémon items
+* User able to see Pokémon news
 
 ### 2. Screen Archetypes
 
