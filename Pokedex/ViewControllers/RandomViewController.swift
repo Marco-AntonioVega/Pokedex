@@ -12,61 +12,104 @@ import Nuke
 class RandomViewController: UIViewController {
 
     @IBOutlet weak var variants: UISegmentedControl!
-    @IBOutlet weak var pokemon_Name: UILabel!
-    @IBOutlet weak var pokemon_Image: UIImageView!
-    @IBOutlet weak var flavor_text: UITextView!
-    @IBOutlet weak var type: UILabel!
+    @IBOutlet weak var pokemonName: UILabel!
+    @IBOutlet weak var pokemonSprite: UIImageView!
+    @IBOutlet weak var flavorText: UITextView!
+    @IBOutlet weak var types: UILabel!
     @IBOutlet weak var species: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var abilities: UILabel!
     
+    //audio manager
     private var player: AVPlayer?
+    
     var natDexNum: Int = 0
-  
-    func playAudio (from url: URL){
-        player = AVPlayer (url: url)
-        player?.play()
-    }
+    let maxNatDexNum = 905
+    var cry: String = ""
+    var variantArray: [Any] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        natDexNum = Int.random(in: 1..<(APIFunctions.getNationalDexCap() + 1))
-
+        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
+        
+        //displays first variant of Pokemon
+        triggerChangePokemon(index: 0)
+    }
+    
+    //handles changing Pokemon variant
+    func triggerChangePokemon(index: Int) {
+        
+        loadPokemon(natDexNum: natDexNum, index: index) { [weak self] in
+            
+            self?.variantArray = $0
+            //print(self?.variantArray ?? [])
+            self!.variants.isHidden = false
+        }
+    }
+    
+    //changes Pokemon if variant tab is tapped
+    @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
+        triggerChangePokemon(index: variants.selectedSegmentIndex)
+    }
+    
+    //gets Pokemon data from natDexNum and tab variant
+    private func loadPokemon(natDexNum: Int, index: Int, completion: @escaping ([Any]) -> Void) {
+        
+        var tempVariantArray: [Any] = []
+        
         APIFunctions.getAllDetails(id: natDexNum) {
-            pokemonAllDetails in DispatchQueue.main.async {
+            pokemonAllDetails in DispatchQueue.main.async { [self] in
                 if let pokemonAllDetails = pokemonAllDetails {
-                    print(pokemonAllDetails.id!)
-                    print(pokemonAllDetails.name!)
-                    print(pokemonAllDetails.variants!)
-                    print(pokemonAllDetails.cry!)
-                    print(pokemonAllDetails.flavorText!)
-                    print(pokemonAllDetails.genus!)
+                    
+                    //displays current Pokemon information
+                    pokemonName.text = "\(pokemonAllDetails.name!) #\(Utility.pad(id: pokemonAllDetails.id!))"
+                    
+                    let arr = pokemonAllDetails.variants![index] as! PokemonVariantDetails
+                    types.text = arr.types
+                    height.text = Utility.getHeight(height: arr.height!)
+                    weight.text = Utility.getWeight(weight: arr.weight!)
+                    abilities.text = arr.abilities
+                    
+                    let url = URL(string: arr.sprite!)
+                    Nuke.loadImage(with: url!, into: pokemonSprite)
+
+                    species.text = pokemonAllDetails.genus
+                    flavorText.text = pokemonAllDetails.flavorText
+                    cry = pokemonAllDetails.cry!
+                    
+                    //fetches variant information if possible
+                    if(pokemonAllDetails.variants!.count > 1) {
+                        for entry in pokemonAllDetails.variants! {
+                            tempVariantArray.append(entry as! PokemonVariantDetails)
+                        }
+                        self.variantArray = tempVariantArray
+                        completion(variantArray)
+                    }
+                    
+                    //hides segemented tab if no variants
+                    else {
+                        self.variants.isHidden = true
+                    }
                 }
             }
         }
-      
-        let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png")
-        pokemon_Name.text = String("Articuno #0144")
-        
-        Nuke.loadImage(with: url!, into: pokemon_Image)
-        flavor_text.text = String("A legendary bird POKéMON that is said to appear to doomed people who are lost in icy mountains.")
-        
-        type.text = String("Psychic/Flying")
-        species.text = String("Freeze POKéMON")
-        height.text = String("1.7 m")
-        weight.text = String("50.9 kg")
-        abilities.text = String("Competitive")
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func onLogOutTapped(_ sender: Any) {
         showConfirmLogoutAlert()
     }
     
+    //plays audio
+    func playAudio (from url: URL){
+        player = AVPlayer (url: url)
+        player?.play()
+    }
+    
+    //handles audio button being tapped
     @IBAction func playCryOnTapped(_ sender: Any) {
-        let audioURL = URL(string: "https://pokemoncries.com/cries/144.mp3")
+        let audioURL = URL(string: cry)
         if let audioURL = audioURL{
             playAudio(from: audioURL)
         }

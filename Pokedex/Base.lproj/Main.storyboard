@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mPE-XA-pIc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mPE-XA-pIc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -161,6 +161,9 @@
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="onSegmentTap:" destination="AsO-2p-rEi" eventType="valueChanged" id="XXe-qb-Ysc"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HQ-Pt-kE6">
                                                 <rect key="frame" x="99.5" y="46" width="117.5" height="20.5"/>
@@ -316,12 +319,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="abilities" destination="PQR-Mk-qv8" id="xqJ-dI-hHv"/>
-                        <outlet property="flavor_text" destination="pL6-Gi-3WJ" id="TQN-cD-g92"/>
+                        <outlet property="flavorText" destination="pL6-Gi-3WJ" id="yTW-r9-jdb"/>
                         <outlet property="height" destination="pPb-8J-q1s" id="vZa-RK-eTb"/>
-                        <outlet property="pokemon_Image" destination="msr-Ga-1Au" id="cce-PR-txf"/>
-                        <outlet property="pokemon_Name" destination="2HQ-Pt-kE6" id="0Rm-I6-7Go"/>
+                        <outlet property="pokemonName" destination="2HQ-Pt-kE6" id="Wh8-ym-QIJ"/>
+                        <outlet property="pokemonSprite" destination="msr-Ga-1Au" id="zN8-8x-lgA"/>
                         <outlet property="species" destination="ypn-dV-oP0" id="Uro-aE-Azx"/>
-                        <outlet property="type" destination="bgc-Et-1dr" id="4SU-Pj-4a3"/>
+                        <outlet property="types" destination="bgc-Et-1dr" id="jbq-Lo-gPi"/>
                         <outlet property="variants" destination="yjT-JB-ns5" id="1rb-ur-z9r"/>
                         <outlet property="weight" destination="oPl-68-5nn" id="Oxm-L8-WZi"/>
                     </connections>

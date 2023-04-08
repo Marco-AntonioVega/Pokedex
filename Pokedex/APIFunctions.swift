@@ -165,7 +165,7 @@ class APIFunctions {
                     height = jsonArray["height"] as! Float / 10.0
                     weight = jsonArray["weight"] as! Float / 10.0
                     abilities = Utility.getAbilities(abilities: jsonArray["abilities"] as! [[String: Any]])
-                    sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(describing: jsonArray["id"])).png"
+                    sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(jsonArray["id"]!).png"
 
                     completion(PokemonVariantDetails(name: name, types: types, height: height, weight: weight, abilities: abilities, sprite: sprite))
                 }
