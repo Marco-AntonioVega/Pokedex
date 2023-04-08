@@ -88,7 +88,7 @@ class RandomViewController: UIViewController {
                             //fills in variant names in tabs
                             if(self.variants.numberOfSegments < pokemonAllDetails.variants!.count || self.variants.titleForSegment(at: 1) == "Second") {
                                 if let variantName = entry as? PokemonVariantDetails {
-                                    print(variantName.name!)
+
                                     if(self.variants.titleForSegment(at: 0) == "First") {
                                         self.variants.setTitle(variantName.name, forSegmentAt: 0)
                                     } else if(self.variants.titleForSegment(at: 1) == "Second") {
