@@ -32,7 +32,6 @@ class SoundViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/928.png")!, into: topLeftImage)
         Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/929.png")!, into: topRightImage)
         Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/930.png")!, into: bottomLeftImage)
