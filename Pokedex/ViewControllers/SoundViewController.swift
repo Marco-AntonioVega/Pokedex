@@ -12,6 +12,9 @@ import Nuke
 class SoundViewController: UIViewController {
     
     private var player: AVPlayer?
+    var idsWithNoCries: [Int] = [741, 745, 803, 804, 805, 806, 807, 808, 809, 890, 891, 892, 893, 894, 895, 896, 897, 898, 899, 900, 901, 902, 903, 904, 905]
+    var cryAudioURL: String = ""
+    var chosenCry: Int = 0
 
     @IBOutlet weak var topLeftImage: UIImageView!
     @IBOutlet weak var topRightImage: UIImageView!
@@ -19,10 +22,25 @@ class SoundViewController: UIViewController {
     @IBOutlet weak var bottomLeftImage: UIImageView!
     
     @IBAction func playCryButtonTapped(_ sender: Any) {
-        let audioURL = URL(string: "https://pokemoncries.com/cries/63.mp3")
+        let audioURL = URL(string: cryAudioURL)
         if let audioURL = audioURL {
             playAudio(from: audioURL)
         }
+    }
+
+    @IBAction func onPokemonTapped(_ gesture: UITapGestureRecognizer) {
+        if let imageView = gesture.view as? UIImageView {
+            // image view tags are from 1 to 4 from top left to bottom right, needed unique tags and all other elements have tag 0
+            if imageView.tag == chosenCry + 1 {
+                imageView.backgroundColor = .green
+            } else {
+                imageView.backgroundColor = .red
+            }
+        }
+    }
+    
+    @IBAction func onNewQuizTapped(_ sender: Any) {
+        loadNewQuiz()
     }
     
     func playAudio(from url: URL) {
@@ -32,10 +50,33 @@ class SoundViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/928.png")!, into: topLeftImage)
-        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/929.png")!, into: topRightImage)
-        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/930.png")!, into: bottomLeftImage)
-        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/931.png")!, into: bottomRightImage)
+        
+        loadNewQuiz()
+    }
+    
+    func loadNewQuiz() {
+        var ids: [Int] = []
+        var natDexNum: Int
+        chosenCry = Int.random(in: 0...3)
+        
+        for _ in 1...4 {
+            repeat {
+                natDexNum = Int.random(in: 1..<(Utility.getMaxDexNum() + 1))
+            }
+            while idsWithNoCries.contains(natDexNum) && ids.contains(natDexNum)
+            ids.append(natDexNum)
+        }
+        
+        cryAudioURL = "https://pokemoncries.com/cries/\(ids[chosenCry]).mp3"
+        
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(ids[0]).png")!, into: topLeftImage)
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(ids[1]).png")!, into: topRightImage)
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(ids[2]).png")!, into: bottomLeftImage)
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(ids[3]).png")!, into: bottomRightImage)
+        
+        for i in 1...4 {
+            view.viewWithTag(i)?.backgroundColor = .white
+        }
     }
     
     @IBAction func onLogOutTapped(_ sender: Any) {

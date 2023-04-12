@@ -526,7 +526,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-if-URX">
-                                <rect key="frame" x="-3.5" y="119" width="421" height="524"/>
+                                <rect key="frame" x="-3.5" y="96.5" width="421" height="568.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B9n-5t-MfU">
                                         <rect key="frame" x="29.5" y="0.0" width="362.5" height="88"/>
@@ -542,7 +542,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Play Cry"/>
                                                 <connections>
-                                                    <action selector="playCryButtonTapped:" destination="QNH-Db-IbI" eventType="touchUpInside" id="UFn-Xd-0WE"/>
+                                                    <action selector="playCryButtonTapped:" destination="QNH-Db-IbI" eventType="touchUpInside" id="de1-rI-lpl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -550,37 +550,61 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="60p-X0-U7I">
                                         <rect key="frame" x="0.0" y="98" width="421" height="208"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ncC-LT-F5Y">
+                                            <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ncC-LT-F5Y">
                                                 <rect key="frame" x="0.0" y="0.0" width="208" height="208"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ncC-LT-F5Y" secondAttribute="height" multiplier="1:1" id="fmr-3o-JOe"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="m5d-kc-VfX" appends="YES" id="bx9-rF-ObM"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NeR-Af-KOV">
+                                            <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NeR-Af-KOV">
                                                 <rect key="frame" x="213" y="0.0" width="208" height="208"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="NeR-Af-KOV" secondAttribute="height" multiplier="1:1" id="cKm-Ch-Ryy"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="aPF-ev-57y" appends="YES" id="0yD-dT-t9T"/>
+                                                </connections>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-1x-7gW">
                                         <rect key="frame" x="0.0" y="316" width="421" height="208"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVx-0T-MBK">
+                                            <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVx-0T-MBK">
                                                 <rect key="frame" x="0.0" y="0.0" width="208" height="208"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SVx-0T-MBK" secondAttribute="height" multiplier="1:1" id="Sj3-4q-kWC"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Ibs-fZ-BeA" appends="YES" id="oh4-8S-pxv"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GGk-jC-pWJ">
+                                            <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GGk-jC-pWJ">
                                                 <rect key="frame" x="213" y="0.0" width="208" height="208"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="GGk-jC-pWJ" secondAttribute="height" multiplier="1:1" id="mjT-5m-D7J"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="X90-hQ-Vkt" appends="YES" id="1UT-B4-YZz"/>
+                                                </connections>
                                             </imageView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJq-UR-mdK">
+                                        <rect key="frame" x="162" y="534" width="97.5" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="New Quiz"/>
+                                        <connections>
+                                            <action selector="onNewQuizTapped:" destination="QNH-Db-IbI" eventType="touchUpInside" id="TVj-J9-w8B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="60p-X0-U7I" firstAttribute="leading" secondItem="fkw-if-URX" secondAttribute="leading" id="009-Zf-1QX"/>
@@ -618,6 +642,26 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQa-ss-8ud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="m5d-kc-VfX">
+                    <connections>
+                        <action selector="onPokemonTapped:" destination="QNH-Db-IbI" id="DNt-NQ-LfG"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="aPF-ev-57y">
+                    <connections>
+                        <action selector="onPokemonTapped:" destination="QNH-Db-IbI" id="sJs-gR-Wap"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Ibs-fZ-BeA">
+                    <connections>
+                        <action selector="onPokemonTapped:" destination="QNH-Db-IbI" id="mWN-jp-XSy"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="X90-hQ-Vkt">
+                    <connections>
+                        <action selector="onPokemonTapped:" destination="QNH-Db-IbI" id="zIt-LI-gCW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2750.7246376811595" y="1466.5178571428571"/>
         </scene>
