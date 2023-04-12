@@ -156,7 +156,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="316" height="454.5"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yjT-JB-ns5">
-                                                <rect key="frame" x="92.5" y="0.0" width="131" height="32"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="131" height="114"/>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
@@ -166,13 +166,13 @@
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HQ-Pt-kE6">
-                                                <rect key="frame" x="99.5" y="46" width="117.5" height="20.5"/>
+                                                <rect key="frame" x="99.5" y="128" width="117.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="msr-Ga-1Au">
-                                                <rect key="frame" x="46" y="81.5" width="224" height="225"/>
+                                                <rect key="frame" x="46" y="163.5" width="224" height="143"/>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pL6-Gi-3WJ">
                                                 <rect key="frame" x="0.0" y="321.5" width="316" height="133"/>
@@ -305,7 +305,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Random" id="8Gf-Gm-66U">
-                        <barButtonItem key="leftBarButtonItem" id="joY-7B-di4">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="joY-7B-di4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="o8k-PO-Tfd">
                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -316,9 +316,22 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="Q4Z-As-gnS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Zvm-tU-30c">
+                                <rect key="frame" x="342" y="5" width="52" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="star" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                <connections>
+                                    <action selector="onFavoriteTapped:" destination="AsO-2p-rEi" eventType="touchUpInside" id="1dh-DP-FmD"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="abilities" destination="PQR-Mk-qv8" id="xqJ-dI-hHv"/>
+                        <outlet property="favoriteBtn" destination="Zvm-tU-30c" id="OKr-Kd-uUj"/>
                         <outlet property="flavorText" destination="pL6-Gi-3WJ" id="yTW-r9-jdb"/>
                         <outlet property="height" destination="pPb-8J-q1s" id="vZa-RK-eTb"/>
                         <outlet property="pokemonName" destination="2HQ-Pt-kE6" id="Wh8-ym-QIJ"/>
@@ -721,6 +734,7 @@
         <image name="cursorarrow" catalog="system" width="92" height="128"/>
         <image name="music.note" catalog="system" width="96" height="128"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -10,6 +10,6 @@ struct PokemonFavoriteEntry: ParseObject {
     var originalData: Data?
 
     // Your own custom properties.
-    var pokemonID: String?
+    var pokemonID: Int?
     var user: User?
 }
