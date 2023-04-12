@@ -33,6 +33,12 @@ class SoundViewController: UIViewController {
             // image view tags are from 1 to 4 from top left to bottom right, needed unique tags and all other elements have tag 0
             if imageView.tag == chosenCry + 1 {
                 imageView.backgroundColor = .green
+                
+                // disable tap gestures
+                view.viewWithTag(1)?.isUserInteractionEnabled = false
+                view.viewWithTag(2)?.isUserInteractionEnabled = false
+                view.viewWithTag(3)?.isUserInteractionEnabled = false
+                view.viewWithTag(4)?.isUserInteractionEnabled = false
             } else {
                 imageView.backgroundColor = .red
             }
@@ -55,6 +61,12 @@ class SoundViewController: UIViewController {
     }
     
     func loadNewQuiz() {
+        // enable tap gestures
+        view.viewWithTag(1)?.isUserInteractionEnabled = true
+        view.viewWithTag(2)?.isUserInteractionEnabled = true
+        view.viewWithTag(3)?.isUserInteractionEnabled = true
+        view.viewWithTag(4)?.isUserInteractionEnabled = true
+        
         var ids: [Int] = []
         var natDexNum: Int
         chosenCry = Int.random(in: 0...3)
