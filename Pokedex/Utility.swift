@@ -114,7 +114,7 @@ class Utility {
         var result = ""
 
         for word in words {
-            if word == word.uppercased() && word.count > 1 { // Check if word is all caps and has more than 1 character
+            if((word == word.uppercased() && word.count > 1) || (word.count == 7 && String(word.prefix(3)) == "POK" && String(word.suffix(3)) == "MON")) { // Check if word is all caps and has more than 1 character
                 let firstLetter = String(word.prefix(1)).uppercased()
                 let remainingLetters = String(word.dropFirst()).lowercased()
                 let convertedWord = firstLetter + remainingLetters

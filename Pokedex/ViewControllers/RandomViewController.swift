@@ -35,7 +35,7 @@ class RandomViewController: UIViewController {
         super.viewDidLoad()
         
         natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-//        natDexNum = 487
+
         //displays first variant of Pokemon
         triggerChangePokemon(index: 0)
         
@@ -263,6 +263,7 @@ class RandomViewController: UIViewController {
         variants.setTitle("Second", forSegmentAt: 1)
         
         natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
+
         triggerChangePokemon(index: 0)
 
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
