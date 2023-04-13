@@ -295,6 +295,9 @@
                                         <rect key="frame" x="120.5" y="657.5" width="75" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                        <connections>
+                                            <action selector="onRefreshTapped:" destination="AsO-2p-rEi" eventType="touchUpInside" id="B4Q-Z0-nkT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

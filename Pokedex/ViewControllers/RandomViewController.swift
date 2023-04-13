@@ -21,6 +21,7 @@ class RandomViewController: UIViewController {
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var abilities: UILabel!
     @IBOutlet weak var favoriteBtn: UIButton!
+    @IBOutlet weak var refreshBtn: UIButton!
     
     //audio manager
     private var player: AVPlayer?
@@ -33,8 +34,8 @@ class RandomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-        natDexNum = 197
+        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
+//        natDexNum = 197
         //displays first variant of Pokemon
         triggerChangePokemon(index: 0)
         
@@ -248,6 +249,14 @@ class RandomViewController: UIViewController {
         if let audioURL = audioURL{
             playAudio(from: audioURL)
         }
+    }
+    
+    @IBAction func onRefreshTapped(_ sender: UIButton) {
+//        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
+//        triggerChangePokemon(index: 0)
+//
+//        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
+//        checkIsFavorite()
     }
     
     private func showConfirmLogoutAlert() {
