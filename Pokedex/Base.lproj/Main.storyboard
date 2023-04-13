@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -120,8 +121,63 @@
                     <view key="view" contentMode="scaleToFill" id="2V8-e5-h5S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-wP-YXM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ML3-Nz-Dou">
+                                    <size key="itemSize" width="128" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCell" id="JeA-SL-tFG" customClass="FavoriteCollectionViewCell" customModule="Pokedex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uME-73-Bi0">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-Qw-0rv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="155"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3PB-FU-pnE">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="129.5"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPR-Ta-Npc">
+                                                            <rect key="frame" x="41.5" y="134.5" width="45" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bGK-Qw-0rv" firstAttribute="top" secondItem="uME-73-Bi0" secondAttribute="top" id="1Yc-l2-mfE"/>
+                                                <constraint firstAttribute="bottom" secondItem="bGK-Qw-0rv" secondAttribute="bottom" constant="5" id="Lk8-TI-sIS"/>
+                                                <constraint firstAttribute="trailing" secondItem="bGK-Qw-0rv" secondAttribute="trailing" id="n9P-v0-cTh"/>
+                                                <constraint firstItem="bGK-Qw-0rv" firstAttribute="leading" secondItem="uME-73-Bi0" secondAttribute="leading" id="z0V-nO-XgJ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="128" height="160"/>
+                                        <connections>
+                                            <outlet property="favoritePokemonImageView" destination="3PB-FU-pnE" id="Xji-wR-DUX"/>
+                                            <outlet property="favoritePokemonNameLabel" destination="YPR-Ta-Npc" id="GRr-x8-qhM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="f1i-UK-qfw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wDh-wP-YXM" secondAttribute="bottom" id="JWt-wV-FTY"/>
+                            <constraint firstItem="wDh-wP-YXM" firstAttribute="leading" secondItem="2V8-e5-h5S" secondAttribute="leading" id="SqO-Ie-EJv"/>
+                            <constraint firstAttribute="trailing" secondItem="wDh-wP-YXM" secondAttribute="trailing" id="TJ6-ww-DXg"/>
+                            <constraint firstItem="wDh-wP-YXM" firstAttribute="top" secondItem="2V8-e5-h5S" secondAttribute="top" id="vTe-w1-uNg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="Zwf-1h-1TG">
                         <barButtonItem key="leftBarButtonItem" id="DUQ-5b-kbb">
@@ -136,6 +192,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="favoriteCollectionView" destination="wDh-wP-YXM" id="2Lx-m3-fmW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9OT-mt-vte" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -663,7 +722,7 @@
                     <navigationItem key="navigationItem" title="I Choose You" id="N8B-JK-UOs">
                         <barButtonItem key="leftBarButtonItem" id="x1R-zU-GGk">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sKB-ts-1A0">
-                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <rect key="frame" x="20" y="4.5" width="92" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout"/>
