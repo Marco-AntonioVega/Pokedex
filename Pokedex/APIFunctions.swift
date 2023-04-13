@@ -95,7 +95,7 @@ class APIFunctions {
                                             //add flavor text to only first variant to avoid overhead
                                             if(variants.count == 1) {
                                                 if let flavorTextArray = jsonArray["flavor_text_entries"] as? [[String: Any]] {
-                                                    flavorText = Utility.getFlavorText(entries: flavorTextArray)
+                                                    flavorText = Utility.filterFlavorText(text: Utility.getFlavorText(entries: flavorTextArray))
                                                 }
                                                 
                                                 if let generaArray = jsonArray["genera"] as? [[String: Any]] {

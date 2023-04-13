@@ -80,20 +80,21 @@ class Utility {
 
     //gets first English flavor text
     static func getFlavorText(entries: [[String: Any]]) -> String {
-        for entry in entries {
-            if let entryLanguageArray = entry["language"] as? [String: Any] {
+        
+        while(true) {
+            let entry = entries.randomElement()
+            if let entryLanguageArray = entry?["language"] as? [String: Any] {
                 if(entryLanguageArray["name"] as! String == "en") {
-                    return entry["flavor_text"] as! String
+                    return entry?["flavor_text"] as! String
                 }
             }
         }
-        return ""
     }
     
     //get rid of special characters in flavor text
     static func filterFlavorText(text: String) -> String {
 //        let regex = try! NSRegularExpression(pattern: "\\bthe\\b", options: .caseInsensitive)
-        let res = text.replacingOccurrences(of: "[the]", with: "", options: .regularExpression)
+//        let res = text.replacingOccurrences(of: "[the]", with: "", options: .regularExpression)
 //        var res = regex.stringByReplacingMatches(in: text, options: [], range: NSRange(0..<text.utf16.count), withTemplate: "")
       //text = text.replace(/[^a-zA-Z0-9'’".,:;é—-]/g, " ");
       //let arr = text.split(" ");
@@ -105,7 +106,7 @@ class Utility {
 //          res = res.concat(res.length == 0 ? "":" ", x);
 //        }
 //      });
-      return res;
+        return text.replacingOccurrences(of: "\n", with: " ");
     }
 
     //pads dex num with 0s
