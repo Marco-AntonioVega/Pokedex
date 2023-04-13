@@ -35,7 +35,7 @@ class RandomViewController: UIViewController {
         super.viewDidLoad()
         
         natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-//        natDexNum = 197
+
         //displays first variant of Pokemon
         triggerChangePokemon(index: 0)
         
@@ -251,12 +251,22 @@ class RandomViewController: UIViewController {
         }
     }
     
+    //gets new Pokemon and updates UI
     @IBAction func onRefreshTapped(_ sender: UIButton) {
-//        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-//        triggerChangePokemon(index: 0)
-//
-//        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
-//        checkIsFavorite()
+        
+        //removes extra variants tabs over 2
+        while(variants.numberOfSegments > 2) {
+            variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
+        }
+        
+        variants.setTitle("First", forSegmentAt: 0)
+        variants.setTitle("Second", forSegmentAt: 1)
+        
+        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
+        triggerChangePokemon(index: 0)
+
+        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
+        checkIsFavorite()
     }
     
     private func showConfirmLogoutAlert() {
