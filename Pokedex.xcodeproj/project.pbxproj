@@ -126,9 +126,9 @@
 		6635A76729DCAEED007E22D1 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
-				22A160B529DE841100111CEB /* ViewControllers */,
 				22A160B329DE6BC400111CEB /* APIFunctions.swift */,
 				2231457229E06ECF0045D862 /* Utility.swift */,
+				22A160B529DE841100111CEB /* ViewControllers */,
 				2266C8FA29DD288F00CE5154 /* Models */,
 				2266C8FB29DD28A100CE5154 /* Login */,
 				EC244F5029E8A343000F9439 /* FavoriteCollectionViewCell.swift */,
