@@ -55,10 +55,10 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         
         let favoritePokemon = favoritePokemonList[indexPath.item]
         
-        let imageURL = favoritePokemon.image
-        let pokemonName = favoritePokemon.name
+//        let imageURL = favoritePokemon.image
+//        let pokemonName = favoritePokemon.name
         
-        Nuke.loadImage(with: imageURL, into: cell.favoritePokemonImageView)
+//        Nuke.loadImage(with: imageURL, into: cell.favoritePokemonImageView)
         
         return cell
     }
