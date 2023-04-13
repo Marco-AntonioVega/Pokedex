@@ -176,32 +176,36 @@ class RandomViewController: UIViewController {
     //removes favorite from user account
     func removeFavorite() {
         
-        let query = PokemonFavoriteEntry.query()
-            .include("user")
-
-        // Fetch objects defined in query (async)
-        query.find { [weak self] result in
+        // Create a background queue for performing the deletion operation
+            let queue = DispatchQueue.global(qos: .background)
             
-            DispatchQueue.main.async {
+            queue.async { [weak self] in
+                let query = PokemonFavoriteEntry.query()
+                    .include("user")
                 
-                switch result {
-                case .success(let entries):
-                    for entry in entries {
-                        if(entry.pokemonID == self?.natDexNum) {
-                            do {
-                                try entry.delete()
-                            } catch {
-                                self?.showAlert(description: error.localizedDescription)
+                // Fetch objects defined in query (async)
+                query.find { [weak self] result in
+                    // Perform the deletion operation on the background queue
+                    switch result {
+                    case .success(let entries):
+                        for entry in entries {
+                            if(entry.pokemonID == self?.natDexNum) {
+                                do {
+                                    try entry.delete()
+                                } catch {
+                                    // Handle any errors that may occur during deletion
+                                    self?.showAlert(description: error.localizedDescription)
+                                }
+                                return
                             }
-                            return
                         }
+                        
+                    case .failure(let error):
+                        // Handle any errors that may occur during query execution
+                        self?.showAlert(description: error.localizedDescription)
                     }
-                    
-                case .failure(let error):
-                    self?.showAlert(description: error.localizedDescription)
                 }
             }
-        }
     }
     
     //checks if current Pokemon is favorited by user
