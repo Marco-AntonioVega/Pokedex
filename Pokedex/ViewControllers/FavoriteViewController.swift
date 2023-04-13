@@ -6,11 +6,29 @@
 //
 
 import UIKit
+import Nuke
 
-class FavoriteViewController: UIViewController {
+class FavoriteViewController: UIViewController, UICollectionViewDataSource {
+    var favoritePokemonList: [PokemonFavoriteEntry] = []
 
+    @IBOutlet weak var favoriteCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favoriteCollectionView.dataSource = self
+        
+        // after setting the favoritePokemonList, reloadData
+        favoriteCollectionView.reloadData()
+        
+        // spacing
+        let layout = favoriteCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
+        let numberOfColumns: CGFloat = 3
+        let width = (favoriteCollectionView.bounds.width - layout.minimumInteritemSpacing * (numberOfColumns - 1)) / numberOfColumns
+        layout.itemSize = CGSize(width: width, height: width)
     }
     
     @IBAction func onLogOutTapped(_ sender: Any) {
@@ -27,4 +45,23 @@ class FavoriteViewController: UIViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favoritePokemonList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as! FavoriteCollectionViewCell
+        
+        let favoritePokemon = favoritePokemonList[indexPath.item]
+        
+        let imageURL = favoritePokemon.image
+        let pokemonName = favoritePokemon.name
+        
+        Nuke.loadImage(with: imageURL, into: cell.favoritePokemonImageView)
+        
+        return cell
+    }
+    
+
 }
