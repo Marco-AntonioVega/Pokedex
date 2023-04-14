@@ -36,7 +36,7 @@ class RandomViewController: UIViewController {
     var cry: String = ""
     var variantArray: [Any] = []
     
-    var delegate: FavoriteViewController?
+    var delegate: RandomViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,8 @@ class RandomViewController: UIViewController {
         
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
         checkIsFavorite()
+        
+        print(delegate)
     }
     
     //handles changing Pokemon variant
@@ -157,7 +159,9 @@ class RandomViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let entry):
-                    print("✅ Pokemon Saved! \(entry)")
+                    print("✅ Pokemon Saved! \\(entry)")
+                    // used to refresh favorites list
+                    self?.delegate!.didAddFavorite(item: entry)
                     
                     // Get the current user
                     if let currentUser = User.current {
@@ -166,9 +170,7 @@ class RandomViewController: UIViewController {
                         currentUser.save { [weak self] result in
                             switch result {
                             case .success(let user):
-                                print("✅ User Saved! \(user)")
-                                // used to refresh favorites list
-                                self?.delegate?.didAddFavorite(item: entry)
+                                print("✅ User Saved! \\(user)")
 
                             case .failure(let error):
                                 self?.showAlert(description: error.localizedDescription)

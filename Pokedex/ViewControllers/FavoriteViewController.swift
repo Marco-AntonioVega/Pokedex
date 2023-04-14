@@ -17,6 +17,18 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set this view as the delegate for Random, in order for random to call didAddFavorite()
+        if let tabBarControllers = tabBarController?.viewControllers {
+            for viewController in tabBarControllers {
+                if let navigationController = viewController as? UINavigationController,
+                   let view2 = navigationController.viewControllers.first as? RandomViewController {
+                    print("DELEGATE SET!")
+                    view2.delegate = self
+                    break
+                }
+            }
+        }
+        
         favoriteCollectionView.dataSource = self
         
         getFavoritePokemon()
@@ -55,7 +67,6 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
             query.find { [weak self] result in
                 switch result {
                 case .success(let entries):
-                    print(entries)
                     DispatchQueue.main.async {
                         self?.favoritePokemonList = entries
                         self?.favoriteCollectionView.reloadData()
@@ -77,28 +88,23 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
         
         let favoritePokemon = favoritePokemonList[indexPath.item]
         
-        // marcos img url idea: https://github.com/PokeAPI/sprites/raw/67217823b89b9116fcb37640838017325629922d/sprites/pokemon/ too small like him
         Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(favoritePokemon.pokemonID!).png")!, into: cell.favoritePokemonImageView)
         APIFunctions.getAllDetails(id: favoritePokemon.pokemonID!) {
             pokemonDetails in DispatchQueue.main.async {
                 cell.favoritePokemonNameLabel.text = pokemonDetails?.name
             }
         }
-//        cell.favoritePokemonNameLabel.text = "\(favoritePokemon.pokemonID!)"
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let view2 = segue.destination as? RandomViewController {
-            view2.delegate = self
-        }
+    // called by other ViewControllers to update favorites list when favorited
+    func didAddFavorite(item: PokemonFavoriteEntry) {
+        favoritePokemonList.append(item)
+        favoriteCollectionView.reloadData()
     }
     
-    func didAddFavorite(item: PokemonFavoriteEntry) {
-        print("item")
-//        print(favoritePokemonList)
-        favoritePokemonList.append(item)
-//        print(favoritePokemonList)
-        favoriteCollectionView.reloadData()
+    // called by other ViewControllers to update favorites list when unfavorited
+    func removedFavorite(item: PokemonFavoriteEntry) {
+    
     }
 }
