@@ -35,17 +35,9 @@ class ChooseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        types.text = "???"
-        height.text = "???"
-        weight.text = "???"
-        abilities.text = "???"
-        
         let url = URL(string: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12ecb7ae-7059-48df-a4f8-2e3fb7858606/d47rmjf-de88a574-49c8-4dcf-9df4-7e11722e8bec.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi8xMmVjYjdhZS03MDU5LTQ4ZGYtYTRmOC0yZTNmYjc4NTg2MDYvZDQ3cm1qZi1kZTg4YTU3NC00OWM4LTRkY2YtOWRmNC03ZTExNzIyZThiZWMucG5nIn1dXX0.qQtrPbihCWTTF7bQl9cQzUVnPw_yhtVNHAWcDgQV8k4")
         
         Nuke.loadImage(with: url!, into: pokemonSprite)
-
-        species.text = "???"
-        cry = "???"
         
         userInput.keyboardType = .numberPad
         
@@ -262,13 +254,21 @@ class ChooseViewController: UIViewController {
     //populates UI with user input Pokedex num
     @IBAction func onSubmitTapped(_ sender: UIButton) {
         
+        //fetches Pokemon info if valid input
         if userInput.text == "" {
             return
         }
         
         if let num = Int(userInput.text ?? "") {
+            if(num < 1 || num > 905) {
+                showTryAgainAlert()
+                return
+            }
+            
             natDexNum = num
+            
         } else {
+            showTryAgainAlert()
             return
         }
         
@@ -301,6 +301,13 @@ class ChooseViewController: UIViewController {
     
     private func showAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showTryAgainAlert() {
+        let alertController = UIAlertController(title: "Please enter a valid input", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
