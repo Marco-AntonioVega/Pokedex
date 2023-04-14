@@ -8,7 +8,8 @@
 import UIKit
 import Nuke
 
-class FavoriteViewController: UIViewController, UICollectionViewDataSource {
+class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate {
+    
     var favoritePokemonList: [PokemonFavoriteEntry] = []
 
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
@@ -18,16 +19,14 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         
         favoriteCollectionView.dataSource = self
         
-        // after setting the favoritePokemonList, reloadData
-        favoriteCollectionView.reloadData()
+        getFavoritePokemon()
         
         // spacing
         let layout = favoriteCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         layout.minimumInteritemSpacing = 4
         layout.minimumLineSpacing = 4
-        let numberOfColumns: CGFloat = 3
-        let width = (favoriteCollectionView.bounds.width - layout.minimumInteritemSpacing * (numberOfColumns - 1)) / numberOfColumns
+        let width = 128
         layout.itemSize = CGSize(width: width, height: width)
     }
     
@@ -46,6 +45,29 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         present(alertController, animated: true)
     }
     
+    func getFavoritePokemon() {
+        let queue = DispatchQueue.global(qos: .background)
+        
+        queue.async { [weak self] in
+            let query = PokemonFavoriteEntry.query()
+                .include("user")
+            
+            query.find { [weak self] result in
+                switch result {
+                case .success(let entries):
+                    print(entries)
+                    DispatchQueue.main.async {
+                        self?.favoritePokemonList = entries
+                        self?.favoriteCollectionView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoritePokemonList.count
     }
@@ -55,13 +77,29 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         
         let favoritePokemon = favoritePokemonList[indexPath.item]
         
-        let imageURL = favoritePokemon.image
-        let pokemonName = favoritePokemon.name
-        
-        Nuke.loadImage(with: imageURL, into: cell.favoritePokemonImageView)
+        // marcos img url idea: https://github.com/PokeAPI/sprites/raw/67217823b89b9116fcb37640838017325629922d/sprites/pokemon/ too small like him
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(favoritePokemon.pokemonID!).png")!, into: cell.favoritePokemonImageView)
+        APIFunctions.getAllDetails(id: favoritePokemon.pokemonID!) {
+            pokemonDetails in DispatchQueue.main.async {
+                cell.favoritePokemonNameLabel.text = pokemonDetails?.name
+            }
+        }
+//        cell.favoritePokemonNameLabel.text = "\(favoritePokemon.pokemonID!)"
         
         return cell
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let view2 = segue.destination as? RandomViewController {
+            view2.delegate = self
+        }
+    }
+    
+    func didAddFavorite(item: PokemonFavoriteEntry) {
+        print("item")
+//        print(favoritePokemonList)
+        favoritePokemonList.append(item)
+//        print(favoritePokemonList)
+        favoriteCollectionView.reloadData()
+    }
 }

@@ -133,37 +133,46 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCell" id="JeA-SL-tFG" customClass="FavoriteCollectionViewCell" customModule="Pokedex" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uME-73-Bi0">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-Qw-0rv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="155"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-Qw-0rv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="175"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3PB-FU-pnE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="129.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="150"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="128" id="iFZ-5S-tUa"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPR-Ta-Npc">
-                                                            <rect key="frame" x="41.5" y="134.5" width="45" height="20.5"/>
+                                                            <rect key="frame" x="41.5" y="150" width="45" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="aIZ-6q-St5"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="YPR-Ta-Npc" firstAttribute="top" secondItem="3PB-FU-pnE" secondAttribute="bottom" id="viz-t4-v9s"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="bGK-Qw-0rv" firstAttribute="top" secondItem="uME-73-Bi0" secondAttribute="top" id="1Yc-l2-mfE"/>
-                                                <constraint firstAttribute="bottom" secondItem="bGK-Qw-0rv" secondAttribute="bottom" constant="5" id="Lk8-TI-sIS"/>
+                                                <constraint firstAttribute="bottom" secondItem="bGK-Qw-0rv" secondAttribute="bottom" id="Lk8-TI-sIS"/>
                                                 <constraint firstAttribute="trailing" secondItem="bGK-Qw-0rv" secondAttribute="trailing" id="n9P-v0-cTh"/>
                                                 <constraint firstItem="bGK-Qw-0rv" firstAttribute="leading" secondItem="uME-73-Bi0" secondAttribute="leading" id="z0V-nO-XgJ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="128" height="160"/>
+                                        <size key="customSize" width="128" height="175"/>
                                         <connections>
-                                            <outlet property="favoritePokemonImageView" destination="3PB-FU-pnE" id="Xji-wR-DUX"/>
+                                            <outlet property="favoritePokemonImageView" destination="3PB-FU-pnE" id="KOM-RJ-w0A"/>
                                             <outlet property="favoritePokemonNameLabel" destination="YPR-Ta-Npc" id="GRr-x8-qhM"/>
                                         </connections>
                                     </collectionViewCell>
@@ -354,11 +363,9 @@
                                         <rect key="frame" x="120.5" y="657.5" width="75" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Button"/>
-
                                         <connections>
                                             <action selector="onRefreshTapped:" destination="AsO-2p-rEi" eventType="touchUpInside" id="B4Q-Z0-nkT"/>
                                         </connections>
-
                                     </button>
                                 </subviews>
                                 <constraints>

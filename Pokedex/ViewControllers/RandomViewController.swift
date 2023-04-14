@@ -9,6 +9,11 @@ import UIKit
 import AVFoundation
 import Nuke
 
+protocol RandomViewControllerDelegate: AnyObject {
+    func didAddFavorite(item: PokemonFavoriteEntry)
+}
+
+
 class RandomViewController: UIViewController {
 
     @IBOutlet weak var variants: UISegmentedControl!
@@ -30,6 +35,8 @@ class RandomViewController: UIViewController {
     let maxNatDexNum: Int = Utility.getMaxDexNum()
     var cry: String = ""
     var variantArray: [Any] = []
+    
+    var delegate: FavoriteViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,6 +167,8 @@ class RandomViewController: UIViewController {
                             switch result {
                             case .success(let user):
                                 print("✅ User Saved! \(user)")
+                                // used to refresh favorites list
+                                self?.delegate?.didAddFavorite(item: entry)
 
                             case .failure(let error):
                                 self?.showAlert(description: error.localizedDescription)
