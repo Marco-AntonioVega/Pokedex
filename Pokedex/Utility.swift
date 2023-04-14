@@ -33,7 +33,7 @@ class Utility {
         var res: String = ""
         for type in types {
             if let typeArray = type["type"] as? [String: Any] {
-                res += (res == "" ? "" : "/") + capitalize(text: typeArray["name"] as! String)
+                res += (res == "" ? "" : " / ") + capitalize(text: typeArray["name"] as! String)
             }
         }
         //var name: String = types[0].type.name;
@@ -106,8 +106,27 @@ class Utility {
 //          res = res.concat(res.length == 0 ? "":" ", x);
 //        }
 //      });
-        return text.replacingOccurrences(of: "\n", with: " ");
+        return convertAllCapsToTitleCase(text.replacingOccurrences(of: "\n", with: " "));
     }
+    
+    static func convertAllCapsToTitleCase(_ input: String) -> String {
+        let words = input.components(separatedBy: .whitespacesAndNewlines)
+        var result = ""
+
+        for word in words {
+            if word == word.uppercased() && word.count > 1 { // Check if word is all caps and has more than 1 character
+                let firstLetter = String(word.prefix(1)).uppercased()
+                let remainingLetters = String(word.dropFirst()).lowercased()
+                let convertedWord = firstLetter + remainingLetters
+                result += convertedWord + " "
+            } else {
+                result += word + " "
+            }
+        }
+
+        return result.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
 
     //pads dex num with 0s
     static func pad(id: Int) -> String {

@@ -85,7 +85,6 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
             }
         }
 //        cell.favoritePokemonNameLabel.text = "\(favoritePokemon.pokemonID!)"
-        
         return cell
     }
     

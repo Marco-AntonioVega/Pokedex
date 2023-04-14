@@ -224,20 +224,23 @@
                                         <rect key="frame" x="0.0" y="0.0" width="316" height="409.5"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K8r-AV-OAj">
-                                                <rect key="frame" x="92.5" y="0.0" width="131" height="1"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="131" height="159"/>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="onSegmentTap:" destination="AsO-2p-rEi" eventType="valueChanged" id="L9r-EE-x2m"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXd-vr-vlE">
-                                                <rect key="frame" x="99.5" y="15" width="117.5" height="8"/>
+                                                <rect key="frame" x="99.5" y="173" width="117.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hX2-VE-FUE">
-                                                <rect key="frame" x="46" y="38" width="224" height="223.5"/>
+                                                <rect key="frame" x="46" y="208.5" width="224" height="53"/>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io1-0I-ALG">
                                                 <rect key="frame" x="0.0" y="276.5" width="316" height="133"/>
@@ -360,9 +363,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMB-wC-4Lc">
-                                        <rect key="frame" x="120.5" y="657.5" width="75" height="34.5"/>
+                                        <rect key="frame" x="116.5" y="657.5" width="83" height="34.5"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Refresh"/>
                                         <connections>
                                             <action selector="onRefreshTapped:" destination="AsO-2p-rEi" eventType="touchUpInside" id="B4Q-Z0-nkT"/>
                                         </connections>
@@ -385,7 +388,7 @@
                     <navigationItem key="navigationItem" title="Random" id="8Gf-Gm-66U">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="joY-7B-di4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="o8k-PO-Tfd">
-                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <rect key="frame" x="20" y="4.5" width="92" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout"/>
@@ -592,20 +595,20 @@
                                         <rect key="frame" x="0.0" y="57" width="316" height="304"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PnX-dz-6in">
-                                                <rect key="frame" x="92.5" y="0.0" width="131" height="31"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="131" height="179.5"/>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
                                                 </segments>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBJ-Ot-nfe">
-                                                <rect key="frame" x="99.5" y="45" width="117.5" height="20.5"/>
+                                                <rect key="frame" x="99.5" y="193.5" width="117.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZdC-Pa-CKm">
-                                                <rect key="frame" x="46" y="80.5" width="224" height="223.5"/>
+                                                <rect key="frame" x="46" y="229" width="224" height="75"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
