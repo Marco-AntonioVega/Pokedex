@@ -8,7 +8,8 @@
 import UIKit
 import Nuke
 
-class FavoriteViewController: UIViewController, UICollectionViewDataSource {
+class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate, FavoriteDetailViewControllerDelegate {
+    
     var favoritePokemonList: [PokemonFavoriteEntry] = []
 
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
@@ -16,18 +17,30 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set this view as the delegate for ViewControllers that change favoriteEntrys
+        if let navigationControllers = tabBarController?.viewControllers {
+            for navigationController in navigationControllers {
+                if let navigationController = navigationController as? UINavigationController {
+                    for viewController in navigationController.children {
+                        // add delegates to VCs here
+                        if let randomVC = viewController as? RandomViewController {
+                            randomVC.delegate = self
+                        }
+                    }
+                }
+            }
+        }
+        
         favoriteCollectionView.dataSource = self
         
-        // after setting the favoritePokemonList, reloadData
-        favoriteCollectionView.reloadData()
+        getFavoritePokemon()
         
         // spacing
         let layout = favoriteCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         layout.minimumInteritemSpacing = 4
         layout.minimumLineSpacing = 4
-        let numberOfColumns: CGFloat = 3
-        let width = (favoriteCollectionView.bounds.width - layout.minimumInteritemSpacing * (numberOfColumns - 1)) / numberOfColumns
+        let width = 128
         layout.itemSize = CGSize(width: width, height: width)
     }
     
@@ -46,6 +59,28 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         present(alertController, animated: true)
     }
     
+    func getFavoritePokemon() {
+        let queue = DispatchQueue.global(qos: .background)
+        
+        queue.async { [weak self] in
+            let query = PokemonFavoriteEntry.query()
+                .include("user")
+            
+            query.find { [weak self] result in
+                switch result {
+                case .success(let entries):
+                    DispatchQueue.main.async {
+                        self?.favoritePokemonList = entries
+                        self?.favoriteCollectionView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoritePokemonList.count
     }
@@ -55,13 +90,60 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource {
         
         let favoritePokemon = favoritePokemonList[indexPath.item]
         
-//        let imageURL = favoritePokemon.image
-//        let pokemonName = favoritePokemon.name
+        Nuke.loadImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(favoritePokemon.pokemonID!).png")!, into: cell.favoritePokemonImageView)
+        APIFunctions.getAllDetails(id: favoritePokemon.pokemonID!) {
+            pokemonDetails in DispatchQueue.main.async {
+                cell.favoritePokemonNameLabel.text = pokemonDetails?.name
+            }
+        }
         
-//        Nuke.loadImage(with: imageURL, into: cell.favoritePokemonImageView)
+        // Add a UITapGestureRecognizer to the cell
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFavorite(_:)))
+        cell.addGestureRecognizer(tapGesture)
+        
+        // used to reference it in didTapFavorite
+        cell.tag = favoritePokemon.pokemonID!
         
         return cell
     }
     
+    @IBAction func didTapFavorite(_ sender: UITapGestureRecognizer) {
+        if let tappedView = sender.view {
+            performSegue(withIdentifier: "favoritePokemonSegue", sender: tappedView)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favoritePokemonSegue",
+            let tappedView = sender as? UIView,
+            let favoriteDetailVC = segue.destination as? FavoriteDetailViewController {
 
+            favoriteDetailVC.pokemonID = tappedView.tag
+            favoriteDetailVC.delegate = self
+        }
+    }
+
+
+    
+    // called by other ViewControllers to update favorites list when favorited
+    func didAddFavorite(item: PokemonFavoriteEntry) {
+        favoritePokemonList.append(item)
+        favoriteCollectionView.reloadData()
+        
+        // copy & paste where poke is favorited self?.delegate!.didAddFavorite(item: entry)
+    }
+    
+    // called by other ViewControllers to update favorites list when unfavorited
+    func removedFavorite(item: PokemonFavoriteEntry) {
+        favoritePokemonList.removeAll(where: { $0 == item })
+        favoriteCollectionView.reloadData()
+        
+        // copy & paste where poke is unfavorited self?.delegate!.removedFavorite(item: entry)
+    }
+    
+    // Add to view controllers that will update favorites
+//    protocol ViewControllerDelegate: AnyObject {
+//        func didAddFavorite(item: PokemonFavoriteEntry)
+//        func removedFavorite(item: PokemonFavoriteEntry)
+//    }
 }

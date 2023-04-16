@@ -1,22 +1,21 @@
 //
-//  RandomViewController.swift
+//  FavoriteDetailViewController.swift
 //  Pokedex
 //
-//  Created by Marco-Antonio Vega on 4/4/23.
+//  Created by ungerardo on 4/15/23.
 //
 
 import UIKit
 import AVFoundation
 import Nuke
 
-protocol RandomViewControllerDelegate: AnyObject {
+protocol FavoriteDetailViewControllerDelegate: AnyObject {
     func didAddFavorite(item: PokemonFavoriteEntry)
     func removedFavorite(item: PokemonFavoriteEntry)
 }
 
-
-class RandomViewController: UIViewController {
-
+class FavoriteDetailViewController: UIViewController {
+    
     @IBOutlet weak var variants: UISegmentedControl!
     @IBOutlet weak var pokemonName: UILabel!
     @IBOutlet weak var pokemonSprite: UIImageView!
@@ -27,52 +26,28 @@ class RandomViewController: UIViewController {
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var abilities: UILabel!
     @IBOutlet weak var favoriteBtn: UIButton!
-    @IBOutlet weak var refreshBtn: UIButton!
     
-    //audio manager
-    private var player: AVPlayer?
-    
-    var natDexNum: Int = 0
-    let maxNatDexNum: Int = Utility.getMaxDexNum()
+    var pokemonID: Int?
     var cry: String = ""
     var variantArray: [Any] = []
     
-    var delegate: RandomViewControllerDelegate?
-    
+    var delegate: FavoriteDetailViewControllerDelegate?
+    private var player: AVPlayer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-//        natDexNum = 487
-        //displays first variant of Pokemon
         triggerChangePokemon(index: 0)
         
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
         checkIsFavorite()
     }
     
-    //handles changing Pokemon variant
-    func triggerChangePokemon(index: Int) {
-        
-        loadPokemon(natDexNum: natDexNum, index: index) { [weak self] in
-            
-            self?.variantArray = $0
-            //print(self?.variantArray ?? [])
-            self!.variants.isHidden = false
-        }
-    }
-    
-    //changes Pokemon if variant tab is tapped
-    @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
-        triggerChangePokemon(index: variants.selectedSegmentIndex)
-    }
-    
-    //gets Pokemon data from natDexNum and tab variant
-    private func loadPokemon(natDexNum: Int, index: Int, completion: @escaping ([Any]) -> Void) {
+    private func loadPokemon(index: Int, completion: @escaping ([Any]) -> Void) {
         
         var tempVariantArray: [Any] = []
         
-        APIFunctions.getAllDetails(id: natDexNum) {
+        APIFunctions.getAllDetails(id: pokemonID!) {
             pokemonAllDetails in DispatchQueue.main.async { [self] in
                 if let pokemonAllDetails = pokemonAllDetails {
                     
@@ -125,6 +100,35 @@ class RandomViewController: UIViewController {
         }
     }
     
+    //plays audio
+    func playAudio (from url: URL){
+        player = AVPlayer (url: url)
+        player?.play()
+    }
+    
+    //handles audio button being tapped
+    @IBAction func playCryOnTapped(_ sender: Any) {
+        let audioURL = URL(string: cry)
+        if let audioURL = audioURL{
+            playAudio(from: audioURL)
+        }
+    }
+    
+    @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
+        triggerChangePokemon(index: variants.selectedSegmentIndex)
+    }
+    
+    //handles changing Pokemon variant
+    func triggerChangePokemon(index: Int) {
+        
+        loadPokemon(index: index) { [weak self] in
+            
+            self?.variantArray = $0
+            //print(self?.variantArray ?? [])
+            self!.variants.isHidden = false
+        }
+    }
+    
     //changes favorite star and adds/removes favorites
     @IBAction func onFavoriteTapped(_ sender: UIButton) {
 
@@ -146,7 +150,7 @@ class RandomViewController: UIViewController {
         var entry = PokemonFavoriteEntry()
 
         // Set properties
-        entry.pokemonID = natDexNum
+        entry.pokemonID = pokemonID!
         
         // Set the user as the current user
         entry.user = User.current
@@ -200,7 +204,7 @@ class RandomViewController: UIViewController {
                     switch result {
                     case .success(let entries):
                         for entry in entries {
-                            if(entry.pokemonID == self?.natDexNum) {
+                            if(entry.pokemonID == self?.pokemonID!) {
                                 do {
                                     try entry.delete()
                                     // remove pokemon from Favorites list
@@ -233,7 +237,7 @@ class RandomViewController: UIViewController {
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.natDexNum) {
+                    if(entry.pokemonID == self?.pokemonID!) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }
@@ -247,38 +251,6 @@ class RandomViewController: UIViewController {
     
     @IBAction func onLogOutTapped(_ sender: Any) {
         showConfirmLogoutAlert()
-    }
-    
-    //plays audio
-    func playAudio (from url: URL){
-        player = AVPlayer (url: url)
-        player?.play()
-    }
-    
-    //handles audio button being tapped
-    @IBAction func playCryOnTapped(_ sender: Any) {
-        let audioURL = URL(string: cry)
-        if let audioURL = audioURL{
-            playAudio(from: audioURL)
-        }
-    }
-    
-    //gets new Pokemon and updates UI
-    @IBAction func onRefreshTapped(_ sender: UIButton) {
-        
-        //removes extra variants tabs over 2
-        while(variants.numberOfSegments > 2) {
-            variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
-        }
-        
-        variants.setTitle("First", forSegmentAt: 0)
-        variants.setTitle("Second", forSegmentAt: 1)
-        
-        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-        triggerChangePokemon(index: 0)
-
-        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
-        checkIsFavorite()
     }
     
     private func showConfirmLogoutAlert() {
@@ -298,4 +270,5 @@ class RandomViewController: UIViewController {
         alertController.addAction(action)
         present(alertController, animated: true)
     }
+
 }

@@ -31,6 +31,7 @@
 		66C040FE29DCBCF60055AE56 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 66C040FD29DCBCF60055AE56 /* ParseSwift */; };
 		6EA079B829E09499002B6FB3 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 6EA079B729E09499002B6FB3 /* Nuke */; };
 		EC244F5129E8A343000F9439 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC244F5029E8A343000F9439 /* FavoriteCollectionViewCell.swift */; };
+		EC659E4729EB8FFB0011CB2B /* FavoriteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC659E4629EB8FFB0011CB2B /* FavoriteDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		6635A77429DCAEEE007E22D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6635A77629DCAEEE007E22D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC244F5029E8A343000F9439 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		EC659E4629EB8FFB0011CB2B /* FavoriteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				22A160AB29DE618D00111CEB /* ChooseViewController.swift */,
 				22A160AD29DE63D900111CEB /* SoundViewController.swift */,
 				22A160AF29DE647200111CEB /* SpellingViewController.swift */,
+				EC659E4629EB8FFB0011CB2B /* FavoriteDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				2266C8FD29DD295900CE5154 /* PokemonFavoriteEntry.swift in Sources */,
 				22A160B429DE6BC400111CEB /* APIFunctions.swift in Sources */,
 				2266C8F729DD21DA00CE5154 /* SignUpViewController.swift in Sources */,
+				EC659E4729EB8FFB0011CB2B /* FavoriteDetailViewController.swift in Sources */,
 				EC244F5129E8A343000F9439 /* FavoriteCollectionViewCell.swift in Sources */,
 				22A160AE29DE63D900111CEB /* SoundViewController.swift in Sources */,
 				22A160AC29DE618D00111CEB /* ChooseViewController.swift in Sources */,
