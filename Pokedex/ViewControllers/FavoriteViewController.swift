@@ -8,7 +8,7 @@
 import UIKit
 import Nuke
 
-class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate {
+class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate, FavoriteDetailViewControllerDelegate {
     
     var favoritePokemonList: [PokemonFavoriteEntry] = []
 
@@ -18,13 +18,18 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
         super.viewDidLoad()
         
         // set this view as the delegate for ViewControllers that change favoriteEntrys
-        if let tabBarControllers = tabBarController?.viewControllers {
-            for viewController in tabBarControllers {
-                if let navigationController = viewController as? UINavigationController,
-                   let view2 = navigationController.viewControllers.first as? RandomViewController {
-                    print("DELEGATE SET!")
-                    view2.delegate = self
-                    break
+        if let navigationControllers = tabBarController?.viewControllers {
+            for navigationController in navigationControllers {
+                if let navigationController = navigationController as? UINavigationController {
+                    for viewController in navigationController.viewControllers {
+                        // add delegates to VCs here
+                        if let randomVC = viewController as? RandomViewController {
+                            randomVC.delegate = self
+                        }
+                        if let favoriteDetailVC = viewController as? FavoriteDetailViewController {
+                            favoriteDetailVC.delegate = self
+                        }
+                    }
                 }
             }
         }
@@ -94,8 +99,33 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
                 cell.favoritePokemonNameLabel.text = pokemonDetails?.name
             }
         }
+        
+        // Add a UITapGestureRecognizer to the cell
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFavorite(_:)))
+        cell.addGestureRecognizer(tapGesture)
+        
+        // used to reference it in didTapFavorite
+        cell.tag = favoritePokemon.pokemonID!
+        
         return cell
     }
+    
+    @IBAction func didTapFavorite(_ sender: UITapGestureRecognizer) {
+        if let tappedView = sender.view {
+            performSegue(withIdentifier: "favoritePokemonSegue", sender: tappedView)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favoritePokemonSegue",
+            let tappedView = sender as? UIView,
+            let favoriteDetailVC = segue.destination as? FavoriteDetailViewController {
+
+            favoriteDetailVC.pokemonID = tappedView.tag
+        }
+    }
+
+
     
     // called by other ViewControllers to update favorites list when favorited
     func didAddFavorite(item: PokemonFavoriteEntry) {
