@@ -21,13 +21,10 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
         if let navigationControllers = tabBarController?.viewControllers {
             for navigationController in navigationControllers {
                 if let navigationController = navigationController as? UINavigationController {
-                    for viewController in navigationController.viewControllers {
+                    for viewController in navigationController.children {
                         // add delegates to VCs here
                         if let randomVC = viewController as? RandomViewController {
                             randomVC.delegate = self
-                        }
-                        if let favoriteDetailVC = viewController as? FavoriteDetailViewController {
-                            favoriteDetailVC.delegate = self
                         }
                     }
                 }
@@ -122,6 +119,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
             let favoriteDetailVC = segue.destination as? FavoriteDetailViewController {
 
             favoriteDetailVC.pokemonID = tappedView.tag
+            favoriteDetailVC.delegate = self
         }
     }
 
@@ -144,7 +142,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
     }
     
     // Add to view controllers that will update favorites
-//    protocol RandomViewControllerDelegate: AnyObject {
+//    protocol ViewControllerDelegate: AnyObject {
 //        func didAddFavorite(item: PokemonFavoriteEntry)
 //        func removedFavorite(item: PokemonFavoriteEntry)
 //    }
