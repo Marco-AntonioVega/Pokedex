@@ -11,6 +11,7 @@ import Nuke
 
 protocol RandomViewControllerDelegate: AnyObject {
     func didAddFavorite(item: PokemonFavoriteEntry)
+    func removedFavorite(item: PokemonFavoriteEntry)
 }
 
 
@@ -48,8 +49,6 @@ class RandomViewController: UIViewController {
         
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
         checkIsFavorite()
-        
-        print(delegate)
     }
     
     //handles changing Pokemon variant
@@ -159,7 +158,7 @@ class RandomViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let entry):
-                    print("✅ Pokemon Saved! \\(entry)")
+                    print("✅ Pokemon Saved! \(entry)")
                     // used to refresh favorites list
                     self?.delegate!.didAddFavorite(item: entry)
                     
@@ -170,7 +169,7 @@ class RandomViewController: UIViewController {
                         currentUser.save { [weak self] result in
                             switch result {
                             case .success(let user):
-                                print("✅ User Saved! \\(user)")
+                                print("✅ User Saved! \(user)")
 
                             case .failure(let error):
                                 self?.showAlert(description: error.localizedDescription)
@@ -204,6 +203,8 @@ class RandomViewController: UIViewController {
                             if(entry.pokemonID == self?.natDexNum) {
                                 do {
                                     try entry.delete()
+                                    // remove pokemon from Favorites list
+                                    self?.delegate!.removedFavorite(item: entry)
                                 } catch {
                                     // Handle any errors that may occur during deletion
                                     self?.showAlert(description: error.localizedDescription)

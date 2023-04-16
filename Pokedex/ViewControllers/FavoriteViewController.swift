@@ -17,7 +17,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set this view as the delegate for Random, in order for random to call didAddFavorite()
+        // set this view as the delegate for ViewControllers that change favoriteEntrys
         if let tabBarControllers = tabBarController?.viewControllers {
             for viewController in tabBarControllers {
                 if let navigationController = viewController as? UINavigationController,
@@ -101,10 +101,21 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
     func didAddFavorite(item: PokemonFavoriteEntry) {
         favoritePokemonList.append(item)
         favoriteCollectionView.reloadData()
+        
+        // copy & paste where poke is favorited self?.delegate!.didAddFavorite(item: entry)
     }
     
     // called by other ViewControllers to update favorites list when unfavorited
     func removedFavorite(item: PokemonFavoriteEntry) {
-    
+        favoritePokemonList.removeAll(where: { $0 == item })
+        favoriteCollectionView.reloadData()
+        
+        // copy & paste where poke is unfavorited self?.delegate!.removedFavorite(item: entry)
     }
+    
+    // Add to view controllers that will update favorites
+//    protocol RandomViewControllerDelegate: AnyObject {
+//        func didAddFavorite(item: PokemonFavoriteEntry)
+//        func removedFavorite(item: PokemonFavoriteEntry)
+//    }
 }
