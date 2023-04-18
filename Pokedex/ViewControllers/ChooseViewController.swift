@@ -36,7 +36,7 @@ class ChooseViewController: UIViewController {
     var cry: String = ""
     var variantArray: [Any] = []
     
-    var delegate: RandomViewControllerDelegate?
+    var delegate: ChooseViewControllerDelegate?
     
     //sets default empty values
     override func viewDidLoad() {

@@ -8,7 +8,7 @@
 import UIKit
 import Nuke
 
-class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate, FavoriteDetailViewControllerDelegate, ChooseViewControllerDelegate {
+class FavoriteViewController: UIViewController, UICollectionViewDataSource, RandomViewControllerDelegate, FavoriteDetailViewControllerDelegate, ChooseViewControllerDelegate, SpellingViewControllerDelegate {
     
     var favoritePokemonList: [PokemonFavoriteEntry] = []
 
@@ -28,6 +28,9 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
                         }
                         if let chooseVC = viewController as? ChooseViewController {
                             chooseVC.delegate = self
+                        }
+                        if let spellingVC = viewController as? SpellingViewController {
+                            spellingVC.delegate = self
                         }
                     }
                 }
