@@ -1,103 +1,60 @@
 //
-//  SpellingViewController.swift
+//  FavoriteDetailViewController.swift
 //  Pokedex
 //
-//  Created by Marco-Antonio Vega on 4/5/23.
+//  Created by ungerardo on 4/15/23.
 //
 
 import UIKit
 import AVFoundation
 import Nuke
 
-class SpellingViewController: UIViewController {
+protocol FavoriteDetailViewControllerDelegate: AnyObject {
+    func didAddFavorite(item: PokemonFavoriteEntry)
+    func removedFavorite(item: PokemonFavoriteEntry)
+}
 
+class FavoriteDetailViewController: UIViewController {
+    
     @IBOutlet weak var variants: UISegmentedControl!
     @IBOutlet weak var pokemonName: UILabel!
     @IBOutlet weak var pokemonSprite: UIImageView!
+    @IBOutlet weak var flavorText: UITextView!
     @IBOutlet weak var types: UILabel!
     @IBOutlet weak var species: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var abilities: UILabel!
     @IBOutlet weak var favoriteBtn: UIButton!
-    @IBOutlet weak var submitBtn: UIButton!
-    @IBOutlet weak var userInput: UITextField!
-    @IBOutlet weak var refreshBtn: UIButton!
     
-    //audio manager
-    private var player: AVPlayer?
-    
-    var natDexNum: Int = 0
-    let maxNatDexNum: Int = Utility.getMaxDexNum()
+    var pokemonID: Int?
     var cry: String = ""
     var variantArray: [Any] = []
     
-    //sets Pokemon image and hides other info
+    var delegate: FavoriteDetailViewControllerDelegate?
+    private var player: AVPlayer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-        triggerChangePokemon(index: 0, isInitial: true, isCheck: false)
+        triggerChangePokemon(index: 0)
         
-        favoriteBtn.isHidden = true
-        variants.isHidden = true
+        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
+        checkIsFavorite()
     }
     
-    //handles changing Pokemon variant
-    func triggerChangePokemon(index: Int, isInitial: Bool, isCheck: Bool) {
-        
-        loadPokemon(natDexNum: natDexNum, index: index, isInitial: isInitial, isCheck: isCheck) { [weak self] in
-            
-            self?.variantArray = $0
-            self!.variants.isHidden = false
-        }
-    }
-    
-    //changes Pokemon if variant tab is tapped
-    @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
-        triggerChangePokemon(index: variants.selectedSegmentIndex, isInitial: false, isCheck: false)
-    }
-    
-    //gets Pokemon data from natDexNum and tab variant
-    private func loadPokemon(natDexNum: Int, index: Int, isInitial: Bool, isCheck: Bool, completion: @escaping ([Any]) -> Void) {
+    private func loadPokemon(index: Int, completion: @escaping ([Any]) -> Void) {
         
         var tempVariantArray: [Any] = []
         
-        APIFunctions.getAllDetails(id: natDexNum) {
+        APIFunctions.getAllDetails(id: pokemonID!) {
             pokemonAllDetails in DispatchQueue.main.async { [self] in
                 if let pokemonAllDetails = pokemonAllDetails {
-                    let arr = pokemonAllDetails.variants![index] as! PokemonVariantDetails
-                    
-                    //if intially setting up page, only show Pokemon image to guess
-                    if(isInitial) {
-                        let url = URL(string: arr.sprite!)
-                        Nuke.loadImage(with: url!, into: pokemonSprite)
-                        return
-                    }
-                    
-                    //if checking for correct answer compare user input with Pokemon name
-                    if(isCheck) {
-                        if((userInput.text?.caseInsensitiveCompare(pokemonAllDetails.name ?? "")) != .orderedSame) {
-                            showTryAgainAlert()
-                            return
-                        }
-                    }
-                    
-                    //removes extra variants tabs over 2
-                    while(variants.numberOfSegments > 2) {
-                        variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
-                    }
-                    
-                    variants.setTitle("First", forSegmentAt: 0)
-                    variants.setTitle("Second", forSegmentAt: 1)
-                    
-                    favoriteBtn.isHidden = false
-                    favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
-                    checkIsFavorite()
                     
                     //displays current Pokemon information
                     pokemonName.text = "\(pokemonAllDetails.name!) #\(Utility.pad(id: pokemonAllDetails.id!))"
                     
+                    let arr = pokemonAllDetails.variants![index] as! PokemonVariantDetails
                     types.text = arr.types
                     height.text = Utility.getHeight(height: arr.height!)
                     weight.text = Utility.getWeight(weight: arr.weight!)
@@ -107,6 +64,7 @@ class SpellingViewController: UIViewController {
                     Nuke.loadImage(with: url!, into: pokemonSprite)
 
                     species.text = pokemonAllDetails.genus
+                    flavorText.text = pokemonAllDetails.flavorText
                     cry = pokemonAllDetails.cry!
                     
                     if(pokemonAllDetails.variants!.count > 1) {
@@ -142,6 +100,35 @@ class SpellingViewController: UIViewController {
         }
     }
     
+    //plays audio
+    func playAudio (from url: URL){
+        player = AVPlayer (url: url)
+        player?.play()
+    }
+    
+    //handles audio button being tapped
+    @IBAction func playCryOnTapped(_ sender: Any) {
+        let audioURL = URL(string: cry)
+        if let audioURL = audioURL{
+            playAudio(from: audioURL)
+        }
+    }
+    
+    @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
+        triggerChangePokemon(index: variants.selectedSegmentIndex)
+    }
+    
+    //handles changing Pokemon variant
+    func triggerChangePokemon(index: Int) {
+        
+        loadPokemon(index: index) { [weak self] in
+            
+            self?.variantArray = $0
+            //print(self?.variantArray ?? [])
+            self!.variants.isHidden = false
+        }
+    }
+    
     //changes favorite star and adds/removes favorites
     @IBAction func onFavoriteTapped(_ sender: UIButton) {
 
@@ -163,7 +150,7 @@ class SpellingViewController: UIViewController {
         var entry = PokemonFavoriteEntry()
 
         // Set properties
-        entry.pokemonID = natDexNum
+        entry.pokemonID = pokemonID!
         
         // Set the user as the current user
         entry.user = User.current
@@ -176,6 +163,8 @@ class SpellingViewController: UIViewController {
                 switch result {
                 case .success(let entry):
                     print("✅ Pokemon Saved! \(entry)")
+                    // used to refresh favorites list
+                    self?.delegate!.didAddFavorite(item: entry)
                     
                     // Get the current user
                     if let currentUser = User.current {
@@ -203,34 +192,37 @@ class SpellingViewController: UIViewController {
     func removeFavorite() {
         
         // Create a background queue for performing the deletion operation
-        let queue = DispatchQueue.global(qos: .background)
+            let queue = DispatchQueue.global(qos: .background)
             
-        queue.async { [weak self] in
-            let query = PokemonFavoriteEntry.query().include("user")
+            queue.async { [weak self] in
+                let query = PokemonFavoriteEntry.query()
+                    .include("user")
                 
-            // Fetch objects defined in query (async)
-            query.find { [weak self] result in
-                // Perform the deletion operation on the background queue
-                switch result {
-                case .success(let entries):
-                    for entry in entries {
-                        if(entry.pokemonID == self?.natDexNum) {
-                            do {
-                                try entry.delete()
-                            } catch {
-                                // Handle any errors that may occur during deletion
-                                self?.showAlert(description: error.localizedDescription)
+                // Fetch objects defined in query (async)
+                query.find { [weak self] result in
+                    // Perform the deletion operation on the background queue
+                    switch result {
+                    case .success(let entries):
+                        for entry in entries {
+                            if(entry.pokemonID == self?.pokemonID!) {
+                                do {
+                                    try entry.delete()
+                                    // remove pokemon from Favorites list
+                                    self?.delegate!.removedFavorite(item: entry)
+                                } catch {
+                                    // Handle any errors that may occur during deletion
+                                    self?.showAlert(description: error.localizedDescription)
+                                }
+                                return
                             }
-                            return
                         }
-                    }
                         
-                case .failure(let error):
-                    // Handle any errors that may occur during query execution
-                    self?.showAlert(description: error.localizedDescription)
+                    case .failure(let error):
+                        // Handle any errors that may occur during query execution
+                        self?.showAlert(description: error.localizedDescription)
+                    }
                 }
             }
-        }
     }
     
     //checks if current Pokemon is favorited by user
@@ -245,7 +237,7 @@ class SpellingViewController: UIViewController {
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.natDexNum) {
+                    if(entry.pokemonID == self?.pokemonID!) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }
@@ -259,43 +251,6 @@ class SpellingViewController: UIViewController {
     
     @IBAction func onLogOutTapped(_ sender: Any) {
         showConfirmLogoutAlert()
-    }
-    
-    //plays audio
-    func playAudio (from url: URL){
-        player = AVPlayer (url: url)
-        player?.play()
-    }
-    
-    //handles audio button being tapped
-    @IBAction func playCryOnTapped(_ sender: Any) {
-        let audioURL = URL(string: cry)
-        if let audioURL = audioURL{
-            playAudio(from: audioURL)
-        }
-    }
-    
-    //populates UI with Pokemon info if user enters correct Pokemon name
-    @IBAction func onSubmitTapped(_ sender: UIButton) {
-        triggerChangePokemon(index: 0, isInitial: false, isCheck: true)
-    }
-    
-    //gets new Pokemon and updates UI
-    @IBAction func onRefreshTapped(_ sender: UIButton) {
-        
-        //removes extra variants tabs over 2
-        while(variants.numberOfSegments > 2) {
-            variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
-        }
-        
-        variants.setTitle("First", forSegmentAt: 0)
-        variants.setTitle("Second", forSegmentAt: 1)
-        
-        natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
-        triggerChangePokemon(index: 0, isInitial: true, isCheck: false)
-
-        favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
-        checkIsFavorite()
     }
     
     private func showConfirmLogoutAlert() {
@@ -315,11 +270,5 @@ class SpellingViewController: UIViewController {
         alertController.addAction(action)
         present(alertController, animated: true)
     }
-    
-    private func showTryAgainAlert() {
-        let alertController = UIAlertController(title: "Please try again...", message: nil, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
+
 }
