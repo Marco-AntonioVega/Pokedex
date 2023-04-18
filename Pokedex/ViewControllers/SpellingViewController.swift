@@ -9,6 +9,11 @@ import UIKit
 import AVFoundation
 import Nuke
 
+protocol SpellingViewControllerDelegate: AnyObject {
+    func didAddFavorite(item: PokemonFavoriteEntry)
+    func removedFavorite(item: PokemonFavoriteEntry)
+}
+
 class SpellingViewController: UIViewController {
 
     @IBOutlet weak var variants: UISegmentedControl!
@@ -31,6 +36,8 @@ class SpellingViewController: UIViewController {
     let maxNatDexNum: Int = Utility.getMaxDexNum()
     var cry: String = ""
     var variantArray: [Any] = []
+    
+    var delegate: SpellingViewControllerDelegate?
     
     //sets Pokemon image and hides other info
     override func viewDidLoad() {
@@ -176,6 +183,8 @@ class SpellingViewController: UIViewController {
                 switch result {
                 case .success(let entry):
                     print("✅ Pokemon Saved! \(entry)")
+                    // used to refresh favorites list
+                    self?.delegate!.didAddFavorite(item: entry)
                     
                     // Get the current user
                     if let currentUser = User.current {
@@ -217,6 +226,8 @@ class SpellingViewController: UIViewController {
                         if(entry.pokemonID == self?.natDexNum) {
                             do {
                                 try entry.delete()
+                                // remove pokemon from Favorites list
+                                self?.delegate!.removedFavorite(item: entry)
                             } catch {
                                 // Handle any errors that may occur during deletion
                                 self?.showAlert(description: error.localizedDescription)
