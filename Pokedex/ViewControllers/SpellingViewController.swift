@@ -48,6 +48,7 @@ class SpellingViewController: UIViewController {
         
         favoriteBtn.isHidden = true
         variants.isHidden = true
+        userInput.autocorrectionType = .no
     }
     
     //handles changing Pokemon variant
@@ -101,6 +102,9 @@ class SpellingViewController: UIViewController {
                     favoriteBtn.isHidden = false
                     favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
                     checkIsFavorite()
+                    
+                    userInput.isUserInteractionEnabled = false
+                    submitBtn.isUserInteractionEnabled = false
                     
                     //displays current Pokemon information
                     pokemonName.text = "\(pokemonAllDetails.name!) #\(Utility.pad(id: pokemonAllDetails.id!))"
@@ -294,6 +298,10 @@ class SpellingViewController: UIViewController {
     //gets new Pokemon and updates UI
     @IBAction func onRefreshTapped(_ sender: UIButton) {
         
+        userInput.text = ""
+        userInput.isUserInteractionEnabled = true
+        submitBtn.isUserInteractionEnabled = true
+        
         //removes extra variants tabs over 2
         while(variants.numberOfSegments > 2) {
             variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
@@ -306,7 +314,7 @@ class SpellingViewController: UIViewController {
         triggerChangePokemon(index: 0, isInitial: true, isCheck: false)
 
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
-        checkIsFavorite()
+        favoriteBtn.isHidden = true
     }
     
     private func showConfirmLogoutAlert() {
