@@ -192,37 +192,37 @@ class FavoriteDetailViewController: UIViewController {
     func removeFavorite() {
         
         // Create a background queue for performing the deletion operation
-            let queue = DispatchQueue.global(qos: .background)
+        let queue = DispatchQueue.global(qos: .background)
             
-            queue.async { [weak self] in
-                let query = PokemonFavoriteEntry.query()
-                    .include("user")
+        queue.async { [weak self] in
+            let query = PokemonFavoriteEntry.query()
+                .include("user")
                 
-                // Fetch objects defined in query (async)
-                query.find { [weak self] result in
-                    // Perform the deletion operation on the background queue
-                    switch result {
-                    case .success(let entries):
-                        for entry in entries {
-                            if(entry.pokemonID == self?.pokemonID!) {
-                                do {
-                                    try entry.delete()
-                                    // remove pokemon from Favorites list
-                                    self?.delegate!.removedFavorite(item: entry)
-                                } catch {
+            // Fetch objects defined in query (async)
+            query.find { [weak self] result in
+                // Perform the deletion operation on the background queue
+                switch result {
+                case .success(let entries):
+                    for entry in entries {
+                        if(entry.pokemonID == self?.natDexNum && entry.user == User.current) {
+                            do {
+                                try entry.delete()
+                                // remove pokemon from Favorites list
+                                self?.delegate!.removedFavorite(item: entry)
+                            } catch {
                                     // Handle any errors that may occur during deletion
-                                    self?.showAlert(description: error.localizedDescription)
-                                }
-                                return
+                                self?.showAlert(description: error.localizedDescription)
                             }
+                            return
                         }
-                        
-                    case .failure(let error):
-                        // Handle any errors that may occur during query execution
-                        self?.showAlert(description: error.localizedDescription)
                     }
+                        
+                case .failure(let error):
+                    // Handle any errors that may occur during query execution
+                    self?.showAlert(description: error.localizedDescription)
                 }
             }
+        }
     }
     
     //checks if current Pokemon is favorited by user
@@ -237,7 +237,7 @@ class FavoriteDetailViewController: UIViewController {
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.pokemonID!) {
+                    if(entry.pokemonID == self?.pokemonID! && entry.user == User.current) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }

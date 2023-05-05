@@ -76,7 +76,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
                 switch result {
                 case .success(let entries):
                     DispatchQueue.main.async {
-                        self?.favoritePokemonList = entries
+                        self?.favoritePokemonList = []
+                        for entry in entries {
+                            if(entry.user == User.current) {
+                                self?.favoritePokemonList.append(entry)
+                            }
+                        }
+//                        self?.favoritePokemonList = entries
                         self?.favoriteCollectionView.reloadData()
                     }
                     

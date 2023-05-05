@@ -227,7 +227,7 @@ class SpellingViewController: UIViewController {
                 switch result {
                 case .success(let entries):
                     for entry in entries {
-                        if(entry.pokemonID == self?.natDexNum) {
+                        if(entry.pokemonID == self?.natDexNum && entry.user == User.current) {
                             do {
                                 try entry.delete()
                                 // remove pokemon from Favorites list
@@ -260,7 +260,7 @@ class SpellingViewController: UIViewController {
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.natDexNum) {
+                    if(entry.pokemonID == self?.natDexNum && entry.user == User.current) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }
