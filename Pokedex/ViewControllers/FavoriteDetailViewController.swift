@@ -230,7 +230,6 @@ class FavoriteDetailViewController: UIViewController {
         
         let query = PokemonFavoriteEntry.query()
             .include("user")
-            .order([.descending("createdAt")])
 
         // Fetch objects defined in query (async)
         query.find { [weak self] result in
