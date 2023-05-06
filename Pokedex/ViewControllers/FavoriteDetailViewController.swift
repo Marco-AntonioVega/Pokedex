@@ -37,6 +37,7 @@ class FavoriteDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        flavorText.isUserInteractionEnabled = false
         triggerChangePokemon(index: 0)
         
         favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
@@ -204,7 +205,7 @@ class FavoriteDetailViewController: UIViewController {
                 switch result {
                 case .success(let entries):
                     for entry in entries {
-                        if(entry.pokemonID == self?.natDexNum && entry.user == User.current) {
+                        if(entry.pokemonID == self?.pokemonID! && entry.user == User.current) {
                             do {
                                 try entry.delete()
                                 // remove pokemon from Favorites list

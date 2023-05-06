@@ -42,6 +42,8 @@ class RandomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        flavorText.isUserInteractionEnabled = false
+        
         natDexNum = Int.random(in: 1..<(maxNatDexNum + 1))
 //        natDexNum = 487
         //displays first variant of Pokemon
