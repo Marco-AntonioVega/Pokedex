@@ -23,20 +23,20 @@ Users can use interactive Pokémon quizzes and activities to learn more about th
 
 **Required Must-have Stories**
 
-* User able to create account
-* User able to login
-* User able to favorite and view Pokémon
-* User able to view random Pokémon
-* User able to view Pokémon based on input Pokédex number
-* User able to guess Pokémon by cry
-* User able to guess Pokémon by name
+- [x] User able to create account
+- [x] User able to login
+- [x] User able to favorite and view Pokémon
+- [x] User able to view random Pokémon
+- [x] User able to view Pokémon based on input Pokédex number
+- [x] User able to guess Pokémon by cry
+- [x] User able to guess Pokémon by name
 
 **Optional Nice-to-have Stories**
 
-* User able to see comptetive movesets for specific Pokémon
-* User able to see Pokémon moves
-* User able to see Pokémon items
-* User able to see Pokémon news
+- [ ] User able to see comptetive movesets for specific Pokémon
+- [ ] User able to see Pokémon moves
+- [ ] User able to see Pokémon items
+- [ ] User able to see Pokémon news
 
 ## Video Walkthrough
 
