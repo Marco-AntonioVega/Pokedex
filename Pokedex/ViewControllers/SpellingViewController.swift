@@ -293,6 +293,14 @@ class SpellingViewController: UIViewController {
         userInput.isUserInteractionEnabled = true
         submitBtn.isUserInteractionEnabled = true
         
+        pokemonName.text = "???"
+        types.text = "???"
+        species.text = "???"
+        height.text = "???"
+        weight.text = "???"
+        abilities.text = "???"
+        cry = ""
+        
         //removes extra variants tabs over 2
         while(variants.numberOfSegments > 2) {
             variants.removeSegment(at: variants.numberOfSegments - 1, animated: false)
