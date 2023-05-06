@@ -138,8 +138,9 @@ class FavoriteDetailViewController: UIViewController {
             postFavorite()
             favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } else {
-
-            removeFavorite()
+            Task {
+                await removeFavorite()
+            }
             favoriteBtn.setImage(UIImage(systemName: "star"), for: .normal)
         }
     }
@@ -190,39 +191,29 @@ class FavoriteDetailViewController: UIViewController {
     }
     
     //removes favorite from user account
-    func removeFavorite() {
-        
-        // Create a background queue for performing the deletion operation
-        let queue = DispatchQueue.global(qos: .background)
+    @available(iOS 15.0, *)
+    func removeFavorite() async {
+        let query = PokemonFavoriteEntry.query()
+            .include("user")
             
-        queue.async { [weak self] in
-            let query = PokemonFavoriteEntry.query()
-                .include("user")
-                
-            // Fetch objects defined in query (async)
-            query.find { [weak self] result in
-                // Perform the deletion operation on the background queue
-                switch result {
-                case .success(let entries):
-                    for entry in entries {
-                        if(entry.pokemonID == self?.pokemonID! && entry.user == User.current) {
-                            do {
-                                try entry.delete()
-                                // remove pokemon from Favorites list
-                                self?.delegate!.removedFavorite(item: entry)
-                            } catch {
-                                    // Handle any errors that may occur during deletion
-                                self?.showAlert(description: error.localizedDescription)
-                            }
-                            return
-                        }
+        do {
+            let entries = try await query.find()
+            for entry in entries {
+                if entry.pokemonID == pokemonID && entry.user == User.current {
+                    do {
+                        try await entry.delete()
+                        // remove pokemon from Favorites list
+                        delegate?.removedFavorite(item: entry)
+                    } catch {
+                        // Handle any errors that may occur during deletion
+                        showAlert(description: error.localizedDescription)
                     }
-                        
-                case .failure(let error):
-                    // Handle any errors that may occur during query execution
-                    self?.showAlert(description: error.localizedDescription)
+                    return
                 }
             }
+        } catch {
+            // Handle any errors that may occur during query execution
+            showAlert(description: error.localizedDescription)
         }
     }
     
