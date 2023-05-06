@@ -38,6 +38,14 @@ Users can use interactive Pokémon quizzes and activities to learn more about th
 * User able to see Pokémon items
 * User able to see Pokémon news
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<a href="https://www.loom.com/share/bfa407d1d8e742f69dc632adac537ee6">
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bfa407d1d8e742f69dc632adac537ee6-with-play.gif">
+</a>
+
 ### 2. Screen Archetypes
 
 * Login screen
