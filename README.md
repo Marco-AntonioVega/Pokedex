@@ -4,6 +4,8 @@
 1. [Overview](#Overview)
 2. [Product Spec](#Product-Spec)
 3. [Video Walkthrough](#Video-Walkthrough)
+4. [Screen Archetypes](#Screen-Archetypes)
+5. [Navigation](#Navigation)
 
 ## Overview
 ### Description
@@ -47,7 +49,7 @@ Here's a walkthrough of implemented user stories:
     <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bfa407d1d8e742f69dc632adac537ee6-with-play.gif">
 </a>
 
-### 2. Screen Archetypes
+## Screen Archetypes
 
 * Login screen
    * User able to login
@@ -66,7 +68,7 @@ Here's a walkthrough of implemented user stories:
 * Pokémon display based on Pokémon name
     * User able to guess Pokémon by name
 
-### 3. Navigation
+## Navigation
 
 **Tab Navigation** (Tab to Screen)
 
