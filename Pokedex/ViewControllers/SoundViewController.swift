@@ -75,7 +75,7 @@ class SoundViewController: UIViewController {
             repeat {
                 natDexNum = Int.random(in: 1..<(Utility.getMaxDexNum() + 1))
             }
-            while idsWithNoCries.contains(natDexNum) && ids.contains(natDexNum)
+            while idsWithNoCries.contains(natDexNum) || ids.contains(natDexNum)
             ids.append(natDexNum)
         }
         
