@@ -1,4 +1,4 @@
-# Pokédex
+# PokéLearn
 
 ## Table of Contents
 1. [Overview](#Overview)
