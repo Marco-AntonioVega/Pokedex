@@ -216,13 +216,12 @@ class ChooseViewController: UIViewController {
         
         let query = PokemonFavoriteEntry.query()
             .include("user")
-
         // Fetch objects defined in query (async)
         query.find { [weak self] result in
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.natDexNum && entry.user == User.current) {
+                    if(entry.pokemonID == self?.natDexNum && entry.user?.email == User.current?.email) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }

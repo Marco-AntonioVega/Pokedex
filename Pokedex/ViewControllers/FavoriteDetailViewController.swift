@@ -228,7 +228,7 @@ class FavoriteDetailViewController: UIViewController {
             switch result {
             case .success(let entries):
                 for entry in entries {
-                    if(entry.pokemonID == self?.pokemonID! && entry.user == User.current) {
+                    if(entry.pokemonID == self?.pokemonID! && entry.user?.email == User.current?.email) {
                         self?.favoriteBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
                         return
                     }

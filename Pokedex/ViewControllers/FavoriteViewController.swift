@@ -78,7 +78,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, Rand
                     DispatchQueue.main.async {
                         self?.favoritePokemonList = []
                         for entry in entries {
-                            if(entry.user == User.current) {
+                            if(entry.user?.email == User.current?.email) {
                                 self?.favoritePokemonList.append(entry)
                             }
                         }
