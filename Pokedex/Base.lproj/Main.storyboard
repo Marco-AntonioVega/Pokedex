@@ -433,14 +433,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="WFA-IY-Fdk">
-                                <rect key="frame" x="49" y="102" width="316" height="692"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-XH-vZb">
+                                <rect key="frame" x="49" y="92" width="316" height="700"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qJR-AH-Swi">
-                                        <rect key="frame" x="0.0" y="0.0" width="316" height="397.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDV-nl-MSx">
+                                        <rect key="frame" x="0.0" y="0.0" width="316" height="393.5"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K8r-AV-OAj">
-                                                <rect key="frame" x="92.5" y="0.0" width="131" height="179.5"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="131" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="fkZ-XK-6xM"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
@@ -450,16 +453,16 @@
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXd-vr-vlE">
-                                                <rect key="frame" x="99.5" y="190.5" width="117.5" height="20.5"/>
+                                                <rect key="frame" x="99.5" y="48" width="117.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hX2-VE-FUE">
-                                                <rect key="frame" x="42.5" y="223" width="231" height="83.5"/>
+                                                <rect key="frame" x="42.5" y="85.5" width="231" height="212"/>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io1-0I-ALG">
-                                                <rect key="frame" x="0.0" y="318.5" width="316" height="79"/>
+                                                <rect key="frame" x="0.0" y="314.5" width="316" height="79"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="79" id="8UV-q9-qHE"/>
@@ -471,8 +474,8 @@
                                             </textView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="io1-0I-ALG" firstAttribute="leading" secondItem="qJR-AH-Swi" secondAttribute="leadingMargin" id="4CV-e2-tzl"/>
-                                            <constraint firstItem="hX2-VE-FUE" firstAttribute="leading" secondItem="qJR-AH-Swi" secondAttribute="leading" constant="42.5" id="APE-LT-srx"/>
+                                            <constraint firstItem="hX2-VE-FUE" firstAttribute="leading" secondItem="vDV-nl-MSx" secondAttribute="leading" constant="42.5" id="OaL-WS-tMR"/>
+                                            <constraint firstItem="io1-0I-ALG" firstAttribute="leading" secondItem="vDV-nl-MSx" secondAttribute="leadingMargin" id="lDh-u6-k2M"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="bbA-6D-KJm">
@@ -566,7 +569,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="870-Un-GFn">
-                                        <rect key="frame" x="114.5" y="610" width="87" height="34.5"/>
+                                        <rect key="frame" x="114.5" y="614" width="87" height="34.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="96t-HV-kHs"/>
                                             <constraint firstAttribute="height" constant="34.5" id="p0R-Qb-7Ba"/>
@@ -578,7 +581,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMB-wC-4Lc">
-                                        <rect key="frame" x="116.5" y="657.5" width="83" height="34.5"/>
+                                        <rect key="frame" x="116.5" y="665.5" width="83" height="34.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="845-UI-dRO"/>
                                             <constraint firstAttribute="height" constant="34.5" id="Wgl-XK-1gX"/>
@@ -591,17 +594,17 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="qJR-AH-Swi" firstAttribute="leading" secondItem="WFA-IY-Fdk" secondAttribute="leadingMargin" id="kPH-wZ-r6X"/>
+                                    <constraint firstItem="vDV-nl-MSx" firstAttribute="leading" secondItem="m0e-XH-vZb" secondAttribute="leadingMargin" id="jxe-C2-v0Z"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PZp-O2-5jV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WFA-IY-Fdk" firstAttribute="leading" secondItem="PZp-O2-5jV" secondAttribute="leading" constant="49" id="1kU-VL-YTc"/>
-                            <constraint firstItem="WFA-IY-Fdk" firstAttribute="centerX" secondItem="NzR-Z9-5z1" secondAttribute="centerX" id="L3k-rs-brA"/>
-                            <constraint firstItem="WFA-IY-Fdk" firstAttribute="top" secondItem="PZp-O2-5jV" secondAttribute="top" constant="10" id="lJc-Hg-Xo8"/>
-                            <constraint firstItem="WFA-IY-Fdk" firstAttribute="centerY" secondItem="NzR-Z9-5z1" secondAttribute="centerY" id="tAG-LN-mF0"/>
+                            <constraint firstItem="m0e-XH-vZb" firstAttribute="centerX" secondItem="NzR-Z9-5z1" secondAttribute="centerX" id="BCn-H6-lqW"/>
+                            <constraint firstItem="m0e-XH-vZb" firstAttribute="top" secondItem="PZp-O2-5jV" secondAttribute="top" id="NOh-Pd-5d2"/>
+                            <constraint firstItem="PZp-O2-5jV" firstAttribute="bottom" secondItem="m0e-XH-vZb" secondAttribute="bottom" constant="21" id="lSp-Bd-MJ4"/>
+                            <constraint firstItem="m0e-XH-vZb" firstAttribute="leading" secondItem="PZp-O2-5jV" secondAttribute="leading" constant="49" id="o1f-fj-0oe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Random" id="8Gf-Gm-66U">
@@ -841,6 +844,9 @@
                                             </stackView>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PnX-dz-6in">
                                                 <rect key="frame" x="47" y="83" width="131" height="31.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30.5" id="pc4-Nk-Kaa"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
