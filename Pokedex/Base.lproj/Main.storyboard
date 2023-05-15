@@ -1273,6 +1273,9 @@
                                             </stackView>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="di3-E7-UBl">
                                                 <rect key="frame" x="49.5" y="83" width="131" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="sxS-VD-83y"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
